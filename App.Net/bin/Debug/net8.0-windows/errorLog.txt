@@ -1,0 +1,2726 @@
+Error Time: 11/17/2024 9:03:37 PM
+System.IO.DirectoryNotFoundException: The specified folder does not exist.
+   at App.Net.Configuration.ImageLoader.LoadImages() in D:\C#.net\App.Net\App.Net\Configuration\ImageLoader.cs:line 15
+----------------------------------------[ImageLoader.LoadImages()]
+Error Time: 11/17/2024 9:03:39 PM
+ImageSlip()_ApiPrinteeCCWEB image is null
+----------------------------------------[ImageSlip()_ApiPrinteeCCWEB]
+Error Time: 11/17/2024 9:03:46 PM
+System.IO.DirectoryNotFoundException: The specified folder does not exist.
+   at App.Net.Configuration.ImageLoader.LoadImages() in D:\C#.net\App.Net\App.Net\Configuration\ImageLoader.cs:line 15
+----------------------------------------[ImageLoader.LoadImages()]
+Error Time: 11/17/2024 9:03:48 PM
+ImageSlip()_ApiPrinteeCCWEB image is null
+----------------------------------------[ImageSlip()_ApiPrinteeCCWEB]
+Error Time: 11/18/2024 2:38:12 AM
+JSON Parsing Error - The JSON array contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $.denom | LineNumber: 14 | BytePositionInLine: 2.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"},
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:39:50 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:40:12 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:42:54 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:44:15 AM
+Validation Error - PrintType is null or empty.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:45:23 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:45:24 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:49:39 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:56:05 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:58:17 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 2:58:33 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:00:14 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:05:26 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:06:28 AM
+Validation Error - Invalid SeqNo format.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:08:41 AM
+Validation Error - Invalid SeqNo format.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:09:19 AM
+Validation Error - Invalid SeqNo format.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:09:37 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:34 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:35 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:36 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:36 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:36 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:36 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:13:37 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:15:18 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:23:29 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:25:48 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:32:57 AM
+Validation Error - Invalid PrintType.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:36:20 AM
+Validation Error - Denom 'null' is invalid. It must be a positive numeric value.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:38:41 AM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:42:05 AM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+    {"denom": "100.00", "qty": "200", "iscashin": "True"},
+    {"denom": "1000.00", "qty": "80", "iscashin": "False"},
+    {"denom": "500.00", "qty": "110", "iscashin": "False"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/18/2024 3:44:32 AM
+JSON Parsing Error - ';' is invalid after a value. Expected either ',', '}', or ']'. Path: $.denom[3] | LineNumber: 10 | BytePositionInLine: 57.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_121164f1ccaa471e8e56c54404dcda88",
+  "reqNo": "121164f1ccaa471e8e56c54404dcda88",
+  "seqNo": "5",
+  "amount": "1,500.00",
+  "change": "500.00",
+  "denom": [
+    {"denom": "1000.00", "qty": "20", "iscashin": "True"},
+     {"denom": "500.00", "qty": "8", "iscashin": "True"},
+     {"denom": "100.00", "qty": "5", "iscashin": "False"};
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": ["INVxxx1", "INVxxx2", "INVxxx3"],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 11/19/2024 5:13:46 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "refill",
+  "txNo": "RFL_c77d8f38349247c6bd7343369cd9d590",
+  "reqNo": "c77d8f38349247c6bd7343369cd9d590",
+  "seqNo": "39",
+  "amount": "999",
+  "change": "0",
+  "denom": null,
+  "txDate": "11/19/2024 5:13:40 PM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 2:05:54 PM
+Validation Error - TxDate is invalid. The correct format is yyyy-MM-dd HH:mm:ss.
+Request Body: {
+  "printType": "dispense",
+  "txNo": "DSP_4d94b5d06ccc473c8b6f7ce910f9da20",
+  "reqNo": "4d94b5d06ccc473c8b6f7ce910f9da20",
+  "seqNo": "82",
+  "amount": "10",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 2:16:00 PM
+Validation Error - Qty '0' is invalid. It must be a positive integer.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_3e9956b7823f4ba4936a688e19d6004f",
+  "reqNo": "3e9956b7823f4ba4936a688e19d6004f",
+  "seqNo": "92",
+  "amount": "3756",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "0.05",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.10",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.20",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.25",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.50",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1000.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "2.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "20.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "5.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "50.00",
+      "qty": "1",
+      "iscashin": "false"
+    },
+    {
+      "denom": "500.00",
+      "qty": "0",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "12/17/2024 7:16:00 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 3:08:09 PM
+Validation Error - IsCashIn 'ture' is invalid. It must be 'True' or 'False'.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_e6346d03af124248ae96c4b9199b22e7",
+  "reqNo": "e6346d03af124248ae96c4b9199b22e7",
+  "seqNo": "95",
+  "amount": "42",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "20.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "1.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "1",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "12/17/2024 8:08:09 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 3:09:24 PM
+Validation Error - IsCashIn 'ture' is invalid. It must be 'True' or 'False'.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_ab96c303362d42bea40bc8e0a1f7eac7",
+  "reqNo": "ab96c303362d42bea40bc8e0a1f7eac7",
+  "seqNo": "96",
+  "amount": "20",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "1.00",
+      "qty": "10",
+      "iscashin": "ture"
+    }
+  ],
+  "txDate": "12/17/2024 8:09:24 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 3:12:14 PM
+Validation Error - IsCashIn 'ture' is invalid. It must be 'True' or 'False'.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_2a2c6c88cb6943998f7d101249177991",
+  "reqNo": "2a2c6c88cb6943998f7d101249177991",
+  "seqNo": "97",
+  "amount": "40",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "20.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "12/17/2024 8:12:14 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 3:14:04 PM
+Validation Error - IsCashIn 'ture' is invalid. It must be 'True' or 'False'.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_2070f2772d7b4c3bb4d0dc2dcf31bade",
+  "reqNo": "2070f2772d7b4c3bb4d0dc2dcf31bade",
+  "seqNo": "98",
+  "amount": "18",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "5.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "1.00",
+      "qty": "4",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "5.00",
+      "qty": "1",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "4",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "12/17/2024 8:14:04 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 3:29:52 PM
+Validation Error - IsCashIn 'ture' is invalid. It must be 'True' or 'False'.
+Request Body: {
+  "printType": "sale",
+  "txNo": "SAL_a9c08e76723142fab7201d517d825fe7",
+  "reqNo": "a9c08e76723142fab7201d517d825fe7",
+  "seqNo": "101",
+  "amount": "20",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "5.00",
+      "qty": "1",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "1.00",
+      "qty": "3",
+      "iscashin": "ture"
+    },
+    {
+      "denom": "5.00",
+      "qty": "1",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "3",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "12/17/2024 8:29:51 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 12/17/2024 5:24:07 PM
+Validation Error - Qty '0' is invalid. It must be a positive integer.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_5aeeaf069125443488ee614b5583b286",
+  "reqNo": "5aeeaf069125443488ee614b5583b286",
+  "seqNo": "122",
+  "amount": "4795",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "0.05",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.10",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.20",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.25",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.50",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1000.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "2.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "20.00",
+      "qty": "16",
+      "iscashin": "false"
+    },
+    {
+      "denom": "5.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "50.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "500.00",
+      "qty": "0",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "12/17/2024 10:24:07 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/6/2025 1:10:06 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_88eb48857e93417889cbd9e7cdbceae7",
+  "reqNo": "RCS_88eb48857e93417889cbd9e7cdbceae7",
+  "seqNo": "265",
+  "amount": "0",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/6/2025 6:10:06 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/6/2025 1:12:16 PM
+Validation Error - TxDate is invalid. The correct format is yyyy-MM-dd HH:mm:ss.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_4f5550b8fe3e462683908e41e0dbe097",
+  "reqNo": "RCS_4f5550b8fe3e462683908e41e0dbe097",
+  "seqNo": "267",
+  "amount": "10",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/6/2025 1:13:10 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_4f5550b8fe3e462683908e41e0dbe097",
+  "reqNo": "RCS_4f5550b8fe3e462683908e41e0dbe097",
+  "seqNo": "267",
+  "amount": "10",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/6/2025 6:13:10 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/6/2025 1:16:37 PM
+Validation Error - TxDate is invalid. The correct format is yyyy-MM-dd HH:mm:ss.
+Request Body: {
+  "printType": "dispense",
+  "txNo": "DSP_8b5e912b0b9643dc91fb930074666523",
+  "reqNo": "DSP_8b5e912b0b9643dc91fb930074666523",
+  "seqNo": "268",
+  "amount": "4",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": "4",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/7/2025 12:05:46 PM
+Validation Error - Qty '0' is invalid. It must be a positive integer.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_0925a84bdc1a4d67b1a41c2382f00866",
+  "reqNo": "RCS_0925a84bdc1a4d67b1a41c2382f00866",
+  "seqNo": "312",
+  "amount": "200",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "0.25",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.50",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "2",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1000.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "2.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "20.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "5.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "50.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "500.00",
+      "qty": "0",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "1/7/2025 5:05:46 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/7/2025 2:10:07 PM
+Validation Error - Qty '0' is invalid. It must be a positive integer.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_16514a740458435fa6452379e8292f04",
+  "reqNo": "RCS_16514a740458435fa6452379e8292f04",
+  "seqNo": "319",
+  "amount": "200",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "0.25",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "0.50",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "2",
+      "iscashin": "false"
+    },
+    {
+      "denom": "1000.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "2.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "20.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "5.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "50.00",
+      "qty": "0",
+      "iscashin": "false"
+    },
+    {
+      "denom": "500.00",
+      "qty": "0",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "1/7/2025 7:10:07 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/8/2025 3:03:15 PM
+Validation Error - TxDate is invalid. The correct format is yyyy-MM-dd HH:mm:ss.
+Request Body: {
+  "printType": "dispense",
+  "txNo": "DSP_24ca8e79f64a422ea2e9c02b1ddd808b",
+  "reqNo": "DSP_24ca8e79f64a422ea2e9c02b1ddd808b",
+  "seqNo": "335",
+  "amount": "10",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "iscashin": "false"
+    }
+  ],
+  "txDate": "",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/8/2025 3:05:37 PM
+JSON Parsing Error - The JSON value could not be converted to System.String. Path: $.denom[0].qty | LineNumber: 10 | BytePositionInLine: 14.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_63426cf4ed904ce581d63bd04d6bbfe0",
+  "reqNo": "RCS_63426cf4ed904ce581d63bd04d6bbfe0",
+  "seqNo": "337",
+  "amount": "12",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "0.25",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "0.50",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "1.00",
+      "qty": 2,
+      "isCashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": 1,
+      "isCashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "1000.00",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "2.00",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "20.00",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "5.00",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "50.00",
+      "qty": 0,
+      "isCashin": "false"
+    },
+    {
+      "denom": "500.00",
+      "qty": 0,
+      "isCashin": "false"
+    }
+  ],
+  "txDate": "1/8/2025 8:05:37 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/8/2025 4:31:47 PM
+JSON Parsing Error - The JSON value could not be converted to System.String. Path: $.denom[0].qty | LineNumber: 10 | BytePositionInLine: 14.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_d597fe0197b54d28a9cf1b68850f8e59",
+  "reqNo": "RCS_d597fe0197b54d28a9cf1b68850f8e59",
+  "seqNo": "339",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": 2,
+      "isCashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": 1,
+      "isCashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": 1,
+      "isCashin": "false"
+    }
+  ],
+  "txDate": "1/8/2025 9:31:46 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/8/2025 4:52:20 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": "2",
+      "isCashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "isCashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "1",
+      "isCashin": "false"
+    }
+  ],
+  "txDate": "1/8/2025 9:52:20 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/8/2025 4:59:35 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": "2",
+      "isCashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "isCashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "1",
+      "isCashin": "false"
+    }
+  ],
+  "txDate": "1/8/2025 9:52:20 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 4:59:49 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": "2",
+      "isCashin": "False"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "isCashin": "False"
+    },
+    {
+      "denom": "100.00",
+      "qty": "1",
+      "isCashin": "False"
+    }
+  ],
+  "txDate": "1/8/2025 9:52:20 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 4:59:50 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": "2",
+      "isCashin": "False"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "isCashin": "False"
+    },
+    {
+      "denom": "100.00",
+      "qty": "1",
+      "isCashin": "False"
+    }
+  ],
+  "txDate": "1/8/2025 9:52:20 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:01:51 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {
+      "denom": "1.00",
+      "qty": "2",
+      "isCashin": "false"
+    },
+    {
+      "denom": "10.00",
+      "qty": "1",
+      "isCashin": "false"
+    },
+    {
+      "denom": "100.00",
+      "qty": "1",
+      "isCashin": "false"
+    }
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:03:54 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"},
+    {"denom": "10.00", "qty": "1", "isCashin": "false"},
+    {"denom": "100.00", "qty": "1", "isCashin": "false"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:04:01 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"},
+    {"denom": "10.00", "qty": "1", "isCashin": "false"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:04:23 PM
+JSON Parsing Error - The JSON array contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $.denom[1] | LineNumber: 27 | BytePositionInLine: 2.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"},
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:04:57 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:04:58 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:04:58 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:04:58 PM
+Validation Error - IsCashIn '' is invalid. It must be 'True' or 'False'.
+Request Body: 
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+{
+  "printType": "endofday",
+  "txNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "reqNo": "RCS_0229563bde4c4a169801a2bb277c6916",
+  "seqNo": "341",
+  "amount": "112",
+  "change": "0",
+  "denom": [
+    {"denom": "1.00", "qty": "2", "isCashin": "false"}
+  ],
+  "txDate": "2024-10-30 05:56:30",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+
+----------------------------------------
+Error Time: 1/8/2025 5:10:24 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_e3c4e09276a3407988b5a470a9dcf503",
+  "reqNo": "RCS_e3c4e09276a3407988b5a470a9dcf503",
+  "seqNo": "346",
+  "amount": "0",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/8/2025 10:10:24 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/8/2025 5:20:26 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_041b095770174937985ccd199331430f",
+  "reqNo": "RCS_041b095770174937985ccd199331430f",
+  "seqNo": "351",
+  "amount": "0",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/8/2025 10:20:26 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/9/2025 3:55:08 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_1cf0d408ce364c7c802e9fadfd78fbb7",
+  "reqNo": "RCS_1cf0d408ce364c7c802e9fadfd78fbb7",
+  "seqNo": "10363",
+  "amount": "0",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/9/2025 8:55:08 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/9/2025 5:40:43 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_5ed1047aeb31407c8a2db91f82d82688",
+  "reqNo": "RCS_5ed1047aeb31407c8a2db91f82d82688",
+  "seqNo": "10373",
+  "amount": "0",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/9/2025 10:40:43 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 1/9/2025 6:22:08 PM
+Validation Error - Denom is missing or empty in the request.
+Request Body: {
+  "printType": "endofday",
+  "txNo": "RCS_3ca5938b64af4a2896e0641a49bd2c48",
+  "reqNo": "RCS_3ca5938b64af4a2896e0641a49bd2c48",
+  "seqNo": "10382",
+  "amount": "0",
+  "change": "0",
+  "denom": null,
+  "txDate": "1/9/2025 11:22:08 AM",
+  "details": [],
+  "showDetail": false,
+  "showDenom": true
+}
+----------------------------------------
+Error Time: 09/04/2025 12:26:56
+Validation Error - Invalid PrintType.
+Request Body: 
+{
+    "printData": {
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+}
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
+Error Time: 09/04/2025 12:27:09
+Validation Error - Invalid PrintType.
+Request Body: 
+{
+    "printData": {
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+}
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
+Error Time: 09/04/2025 12:30:29
+Validation Error - Invalid PrintType.
+Request Body: 
+{
+    "printData": {
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+}
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
+Error Time: 09/04/2025 12:30:34
+Validation Error - Invalid SeqNo format.
+Request Body: 
+{
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
+Error Time: 09/04/2025 12:48:53
+Validation Error - Invalid PrintType.
+Request Body: {
+    "printData": {
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+	"seqNo": "55",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+}
+    
+                               
+                                                          
+                                                       
+                         
+                               
+                              
+                            
+                     
+                
+                                  
+                              
+                                     
+                 
+                
+                                 
+                              
+                                     
+                
+             
+                                              
+                       
+                               
+             
+                              
+                             
+                                
+                                  
+        
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
+Error Time: 09/04/2025 12:49:03
+Validation Error - Invalid PrintType.
+Request Body: {
+    "printData": {
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+	      "seqNo": "55",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+}
+    
+                               
+                                                          
+                                                       
+                         
+                               
+                              
+                            
+                     
+                
+                                  
+                              
+                                     
+                 
+                
+                                 
+                              
+                                     
+                
+             
+                                              
+                       
+                               
+             
+                              
+                             
+                                
+                                  
+        
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
+Error Time: 09/04/2025 12:55:00
+JSON Parsing Error - The JSON object contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $ | LineNumber: 10 | BytePositionInLine: 0.
+Request Body: {
+  "date":"2025-04-04",
+  "totalSale":"0.00", 
+  "totalFee":"0.00",
+  "totalRefill":"0.00",
+  "totalDeposit":"0.00",
+  "totalDispense":"0.00",
+  "totalRelease":"0.00",
+  "thisRelease":"0.00",
+  "thisRemaining":"0.00",
+}
+----------------------------------------
+Error Time: 09/04/2025 12:55:44
+JSON Parsing Error - The JSON object contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $ | LineNumber: 10 | BytePositionInLine: 0.
+Request Body: {
+  "date":"2025-04-04",
+  "totalSale":"0.00", 
+  "totalFee":"0.00",
+  "totalRefill":"0.00",
+  "totalDeposit":"0.00",
+  "totalDispense":"0.00",
+  "totalRelease":"0.00",
+  "thisRelease":"0.00",
+  "thisRemaining":"0.00",
+}
+----------------------------------------
+Error Time: 09/04/2025 12:57:25
+JSON Parsing Error - The JSON object contains a trailing comma at the end which is not supported in this mode. Change the reader options. Path: $ | LineNumber: 10 | BytePositionInLine: 0.
+Request Body: {
+  "date":"2025-04-04",
+  "totalSale":"0.00", 
+  "totalFee":"0.00",
+  "totalRefill":"0.00",
+  "totalDeposit":"0.00",
+  "totalDispense":"0.00",
+  "totalRelease":"0.00",
+  "thisRelease":"0.00",
+  "thisRemaining":"0.00",
+}
+----------------------------------------
+Error Time: 01/05/2025 19:40:17
+Validation Error - Invalid PrintType.
+Request Body: {
+    "printData": {
+        "printType": "sale",
+        "txNo": "SAL_c5b8c939f29341f1a1be0290a1fecf95",
+        "reqNo": "c5b8c939f29341f1a1be0290a1fecf95",
+	      "seqNo": "55",
+        "customer": "12345",
+        "amount": "120.00",
+        "change": "0.00",
+        "denom": [
+            {
+                "denom": "100",
+                "qty": "1",
+                "iscashin": "true"
+            },
+            {
+                "denom": "10",
+                "qty": "2",
+                "iscashin": "true"
+            }
+        ],
+        "txDate": "2025-03-18T10:48:41.97",
+        "details": [
+            "TX-00004 : 120"
+        ],
+        "showDetail": true,
+        "showDenom": true,
+        "isCancelSale": false,
+        "username": "manager01"
+    }
+}
+    
+                               
+                                                          
+                                                       
+                         
+                               
+                              
+                            
+                     
+                
+                                  
+                              
+                                     
+                 
+                
+                                 
+                              
+                                     
+                
+             
+                                              
+                       
+                               
+             
+                              
+                             
+                                
+                                  
+        
+    
+                         
+                                                    
+                                                 
+                   
+                          
+                        
+               
+                                                            
+                                                           
+       
+                                     
+                                                  
+                        
+                      
+    
+
+    
+                             
+                                                    
+                                                     
+                    
+                     
+                   
+               
+        
+                         
+                    
+                            
+         
+        
+                          
+                    
+                            
+         
+        
+                           
+                    
+                            
+        
+       
+                                     
+                   
+                         
+                      
+    
+
+
+----------------------------------------
