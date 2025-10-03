@@ -12,6 +12,8 @@ namespace App.Net.Configuration
 
         public static string CurrentTime => DateTime.Now.ToShortTimeString();
 
+        public static string hostURL { get; set; } = "localhost";
+
         public static string portURL { get; set; } = "8000";
 
         public static bool DemoSetting { get; set; } = false;

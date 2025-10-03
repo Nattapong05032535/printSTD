@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using App.Net.Configuration;
-using App.Net.Controller;
 using App.Net.formatReceipt;
 using App.Net.Model;
 
@@ -16,39 +15,18 @@ namespace App.Net
 
         private Point lastCursor;
 
-        private HttpListener _listener;
-
-        private Thread? _listenerThread;
-
         private NotifyIcon trayIcon;
 
         private ContextMenuStrip trayMenu;
-
-        private ConcretePrintController _printController;
-
-        private CancellationTokenSource _cancellationTokenSource;
 
         public Server_API_Print()
         {
             InitializeComponent();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            _listener = new HttpListener();
             trayIcon = new NotifyIcon();
             trayMenu = new ContextMenuStrip();
 
-            _printController = new ConcretePrintController(this);
-
             InitializeListener();
-
-            Task.Run(() => ListenForRequests(_cancellationTokenSource.Token)).ContinueWith(t =>
-            {
-                // จัดการข้อผิดพลาดจากงาน background
-                if (t.Exception != null)
-                {
-                    Log($"Error: {t.Exception.Message}");
-                }
-            }, TaskContinuationOptions.OnlyOnFaulted);
         }
 
         private void InitializeListener()
@@ -59,45 +37,18 @@ namespace App.Net
 
                 LoadPrintersToComboBox();
 
-                if (_listener == null)
-                {
-                    _listener = new HttpListener();
-                }
-
-                if (_listener.IsListening)
-                {
-                    _listener.Stop();
-                    _listener.Close();
-                    AppendStatus("Stopped the existing listener before restarting.");
-                }
-
                 string port = Setting.portURL;
-                string urlPrint = $"http://localhost:{port}/api/print/";
-                string urlReport = $"http://localhost:{port}/api/report/";
+                string host = string.IsNullOrWhiteSpace(Setting.hostURL) ? "localhost" : Setting.hostURL.Trim();
 
-                _listener.Prefixes.Add(urlPrint);
-                _listener.Prefixes.Add(urlReport);
-
-                if (IsPortInUse(port))
-                {
-                    AppendStatus($"The port {port} is already in use. Please choose another port.");
-                    MessageBox.Show($"The port {port} is already in use. Please choose another port.",
-                                     "มีการเปิดใช้งานพอร์ตหรือโปรแกรมแล้ว",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Error);
-
-                    Environment.Exit(0);
-                    return;
-                }
-
-                _listener.Start();
-                AppendStatus($"Start API Print CCWEB:");
-                AppendStatus($" - {urlPrint}");
-                AppendStatus($" - {urlReport}");
+                AppendStatus($"API Print CCWEB configured:");
+                AppendStatus($" - Host: {host}");
+                AppendStatus($" - Port: {port}");
+                AppendStatus($" - Print API: http://{host}:{port}/api/print");
+                AppendStatus($" - Report API: http://{host}:{port}/api/report");
             }
             catch (Exception ex)
             {
-                AppendStatus($"Failed to start the API Print CCWEB service at http://localhost:{Setting.portURL}/api/print/");
+                AppendStatus($"Failed to initialize configuration: {ex.Message}");
                 string filePath = Application.StartupPath + @"\errorLog.txt";
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
@@ -110,35 +61,20 @@ namespace App.Net
 
         private void LoadPrintersToComboBox()
         {
-            // ลบรายการที่มีอยู่ใน ComboBox ออกก่อน
+            // องิดอง
             cbNamePrinter.Items.Clear();
 
-            // เพิ่มเครื่องพิมพ์ทั้งหมดที่ติดตั้งในเครื่อง
+            // องิดอง
             foreach (string printer in PrinterSettings.InstalledPrinters)
             {
                 cbNamePrinter.Items.Add(printer);
             }
 
-            // ตรวจสอบว่า ComboBox มีรายการแล้วหรือยัง
+            // วจอบ ComboBoxยกัง
             if (cbNamePrinter.Items.Count > 0)
             {
-                // เลือกเครื่องพิมพ์แรกโดยอัตโนมัติ
+                // อกองรกัตัต
                 cbNamePrinter.SelectedIndex = 0;
-            }
-        }
-
-        private bool IsPortInUse(string port)
-        {
-            try
-            {
-                var tcpListener = new TcpListener(IPAddress.Loopback, int.Parse(port));
-                tcpListener.Start();
-                tcpListener.Stop();
-                return false;
-            }
-            catch (SocketException)
-            {
-                return true;
             }
         }
 
@@ -200,75 +136,75 @@ namespace App.Net
 
                     if (Setting.DemoSetting && !string.IsNullOrEmpty(DetailDenom.txDate))
                     {
-                        // อ่านชื่อเครื่องพิมพ์จาก DetailDenom.printer
+                        // านองาก DetailDenom.printer
                         string printer = Setting.printer;
 
-                        // สร้าง PrintDocument และกำหนด PrinterSettings
+                        // าง PrintDocumentะกหน PrinterSettings
                         PrintDocument printDoc = new PrintDocument();
                         printDoc.PrinterSettings.PrinterName = printer;
 
-                        // ตรวจสอบว่าเครื่องพิมพ์ที่เลือกมีอยู่จริง
+                        // วจอบองอกิง
                         if (!printDoc.PrinterSettings.IsValid)
                         {
-                            txtstatus.Text += "เครื่องพิมพ์ที่เลือกไม่ถูกต้อง หรือไม่สามารถเข้าถึงได้." + Environment.NewLine;
-                            return;  // ออกจากฟังก์ชันหากเครื่องพิมพ์ไม่สามารถใช้งานได้
+                            txtstatus.Text += "องอกูกอง รถาถึง." + Environment.NewLine;
+                            return;  //อกากังันากองรถาน
                         }
                         else
                         {
                             if (DetailDenom.printType == "sale" && Setting.salePrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "refill" && Setting.refillPrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "dispense" && Setting.dispensePrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "deposit" && Setting.dispositPrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "endofday" && Setting.endofdayPrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "remove-casstte" && Setting.removePrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "exchange-sale" && Setting.exchangeSalePrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
                             
                             else if (DetailDenom.printType == "exchange-disp" && Setting.exchangeDispPrint == true)
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                                // องูกองอก
                                 printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
+                                printDoc.Print();  // ่งค่งพ
                             }
 
                             else
@@ -299,7 +235,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[UpdateFields(RequestModel data)]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "UpdateFields(RequestModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "UpdateFields(RequestModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -321,32 +257,26 @@ namespace App.Net
                     txt_thisRelease.Text = DetailDenom.thisRelease;
                     txt_thisRemaining.Text = DetailDenom.thisRemaining;
 
-                    //if (Setting.DemoSetting)
-                    //{
-                    //    ReportDocument1.PrintController = new StandardPrintController();
-                    //    ReportDocument1.Print();
-                    //}
-
                     if (Setting.DemoSetting)
                     {
-                        // อ่านชื่อเครื่องพิมพ์จาก DetailDenom.printer
+                        // านองาก DetailDenom.printer
                         string printer = Setting.printer;
 
-                        // สร้าง PrintDocument และกำหนด PrinterSettings
+                        // าง PrintDocumentะกหน PrinterSettings
                         PrintDocument printDoc = new PrintDocument();
                         printDoc.PrinterSettings.PrinterName = printer;
 
-                        // ตรวจสอบว่าเครื่องพิมพ์ที่เลือกมีอยู่จริง
+                        // วจอบองอกิง
                         if (!printDoc.PrinterSettings.IsValid)
                         {
-                            txtstatus.Text += "เครื่องพิมพ์ที่เลือกไม่ถูกต้อง หรือไม่สามารถเข้าถึงได้." + Environment.NewLine;
-                            return;  // ออกจากฟังก์ชันหากเครื่องพิมพ์ไม่สามารถใช้งานได้
+                            txtstatus.Text += "องอกูกอง รถาถึง." + Environment.NewLine;
+                            return;  //อกากังันากองรถาน
                         }
                         else
                         {
-                            // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
+                            // องูกองอก
                             printDoc.PrintPage += new PrintPageEventHandler(ReportDocument1_PrintPage);
-                            printDoc.Print();  // ส่งคำสั่งพิมพ์
+                            printDoc.Print();  // ่งค่งพ
                         }
                     }
                 }
@@ -367,24 +297,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[UpdateFields(RequestReportModel data)]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "UpdateFields(RequestReportModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async Task ListenForRequests(CancellationToken token)
-        {
-            try
-            {
-                while (_listener.IsListening && !token.IsCancellationRequested)
-                {
-                    var context = await _listener.GetContextAsync();
-
-                    await _printController.ProcessRequest(context);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log($"ListenForRequests Error: {ex.Message}");
+                MessageBox.Show("ุณาติดหนาท", "UpdateFields(RequestReportModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -411,7 +324,7 @@ namespace App.Net
                     Visible = true
                 };
 
-                // ระบุ Path สำหรับ Icon (หากมีไฟล์ .ico)
+                //ะบ Path ับ Icon (าก .ico)
                 string iconPath = Path.Combine(Application.StartupPath, "iconBar", "printer.ico");
                 if (File.Exists(iconPath))
                 {
@@ -425,7 +338,7 @@ namespace App.Net
 
                 trayIcon.ContextMenuStrip = trayMenu;
 
-                // ระบุ Path สำหรับ Icon ของหน้าต่างหลัก (ถ้ามี)
+                //ะบ Path ับ Icon องหนาตางัก ()
                 string iconPathbar = Path.Combine(Application.StartupPath, "iconBar", "statusbar.ico");
                 if (File.Exists(iconPathbar))
                 {
@@ -445,7 +358,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[handleDesige()]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "handleDesige() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "handleDesige() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -472,7 +385,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[UpdateTextBox]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "UpdateTextBox ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "UpdateTextBox ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -493,11 +406,11 @@ namespace App.Net
                         }
                         catch (ObjectDisposedException)
                         {
-                            // Form หรือ Control ถูกปิดไปแล้ว จัดการข้อผิดพลาดนี้โดยไม่ทำอะไร
+                            // Form Controlูกิด ัดรขอผิดาด
                         }
                         catch (InvalidAsynchronousStateException)
                         {
-                            // เธรดถูกปิด จัดการข้อผิดพลาดนี้โดยไม่ทำอะไร หรือ log ตามต้องการ
+                            //รดูกิด ัดรขอผิดาด log อง
                         }
                     }
                     else
@@ -526,12 +439,12 @@ namespace App.Net
 
                     if (!this.IsDisposed)
                     {
-                        MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "Log ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("ุณาติดหนาท", "Log ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch
                 {
-                    // ในกรณีที่เกิดข้อผิดพลาดในการบันทึก log หรือแสดง MessageBox ก็ไม่ทำอะไร
+                    // ในกรณีทิดอผิดาดในกรบันึก log สด MessageBox 
                 }
             }
         }
@@ -617,6 +530,10 @@ namespace App.Net
                                         Setting.portURL = value;
                                         AppendStatus("portURL:" + Setting.portURL);
                                         break;
+                                    case "hostURL":
+                                        Setting.hostURL = value;
+                                        AppendStatus("hostURL:" + Setting.hostURL);
+                                        break;
                                     case "printerName":
                                         Setting.printer = value;
                                         AppendStatus("printerName:" + Setting.printer);
@@ -694,17 +611,17 @@ namespace App.Net
                         }
 
 
-                        // อ่านชื่อเครื่องพิมพ์จาก DetailDenom.printer
+                        // านองาก DetailDenom.printer
                         string printer = Setting.printer;
 
-                        // สร้าง PrintDocument และกำหนด PrinterSettings
+                        // าง PrintDocumentะกหน PrinterSettings
                         PrintDocument printDoc = new PrintDocument();
                         printDoc.PrinterSettings.PrinterName = printer;
 
-                        // ตรวจสอบว่าเครื่องพิมพ์ที่เลือกมีอยู่จริง
+                        // วจอบองอกิง
                         if (!printDoc.PrinterSettings.IsValid)
                         {
-                            txtstatus.Text += "เครื่องพิมพ์ที่เลือกไม่ถูกต้อง หรือไม่สามารถเข้าถึงได้." + Environment.NewLine;
+                            txtstatus.Text += "องอกูกอง รถาถึง." + Environment.NewLine;
                         }
 
                         return true;
@@ -733,7 +650,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[ImageSlip]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -771,7 +688,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[ImageSlip]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -799,7 +716,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[AppendStatus]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "AppendStatus ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "AppendStatus ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -830,7 +747,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[OnMinimizet()]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "OnMinimizet() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "OnMinimizet() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -853,7 +770,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[OnMinimize]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "OnMinimize ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "OnMinimize ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -889,7 +806,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[OnOpen]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "OnOpen ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "OnOpen ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -897,7 +814,7 @@ namespace App.Net
         {
             try
             {
-                _listener?.Stop();
+                Program.StopWebHost();
                 Application.Exit();
             }
             catch
@@ -909,8 +826,7 @@ namespace App.Net
         {
             try
             {
-                _listener?.Stop();
-                _cancellationTokenSource?.Cancel();
+                Program.StopWebHost();
             }
             catch (Exception ex)
             {
@@ -922,7 +838,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[Form1_FormClosing]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "Form1_FormClosing ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "Form1_FormClosing ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -930,7 +846,7 @@ namespace App.Net
         {
             try
             {
-                _listener?.Stop();
+                Program.StopWebHost();
                 Application.Exit();
             }
             catch
@@ -1020,38 +936,38 @@ namespace App.Net
         {
             try
             {
-                // ตรวจสอบว่าได้เลือกเครื่องพิมพ์จาก ComboBox หรือยัง
+                // วจอบอกองาก ComboBox ัง
                 if (cbNamePrinter.SelectedItem != null)
                 {
-                    // อ่านชื่อเครื่องพิมพ์ที่เลือกจาก ComboBox
-                    string selectedPrinter = cbNamePrinter.SelectedItem?.ToString() ?? "DefaultPrinter";  // ใช้ null-coalescing
+                    // านองอกาก ComboBox
+                    string selectedPrinter = cbNamePrinter.SelectedItem?.ToString() ?? "DefaultPrinter";  // null-coalescing
 
-                    // อ่านข้อมูลจากไฟล์ Connect.txt
+                    // านลจาก Connect.txt
                     string filePath = Application.StartupPath + @"\Connect.txt";
                     string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
-                    // สร้างตัวแปรเพื่อเก็บข้อมูลที่อัปเดตแล้ว
+                    // าง็บขลทัปเดต
                     List<string> updatedLines = new List<string>();
 
-                    // แก้ไขบรรทัดที่มี 'printerName' โดยแทนที่ค่าที่มีอยู่เดิม
+                    // ไขบรทัด 'printerName' แทนาท
                     foreach (var line in lines)
                     {
                         if (line.StartsWith("printerName;"))
                         {
-                            // ถ้ามี printerName, แทนที่ค่าหลังเครื่องหมาย ; ด้วยชื่อเครื่องพิมพ์ที่เลือก
+                            //  printerName, แทนังอง ; ยชองอก
                             updatedLines.Add("printerName;" + selectedPrinter);
                         }
                         else
                         {
-                            // ถ้าไม่ใช่ printerName, ให้เพิ่มบรรทัดนี้ตามปกติ
+                            //  printerName, รทัด
                             updatedLines.Add(line);
                         }
                     }
 
-                    // เขียนข้อมูลที่แก้ไขแล้วกลับไปที่ไฟล์ Connect.txt
+                    //ยนลทวกับไปท Connect.txt
                     File.WriteAllLines(filePath, updatedLines, Encoding.UTF8);
 
-                    // อัปเดตการตั้งค่าเครื่องพิมพ์ใน Settings
+                    // ัปเดตรต้งคอง Settings
                     Setting.printer = selectedPrinter;
 
                     AppendStatus("printerName set to: " + selectedPrinter);
@@ -1060,13 +976,13 @@ namespace App.Net
                 }
                 else
                 {
-                    MessageBox.Show("กรุณาเลือกเครื่องพิมพ์ก่อน.", "เลือกเครื่องพิมพ์", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("ุณอกองอน.", "อกอง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                // จัดการข้อผิดพลาด
-                MessageBox.Show("เกิดข้อผิดพลาดในการบันทึกข้อมูล: " + ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // ัดรขอผิดาด
+                MessageBox.Show("ิดอผิดาดในกรบันึก: " + ex.Message, "อผิดาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
