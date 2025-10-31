@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App.Net.Model
+﻿namespace App.Net.Model
 {
     class DetailDenom
     {
         public static string printType { get; set; } = "";
+        public static string printTypeTHB { get; set; } = "";
         public static string txNo { get; set; } = "";
         public static string reqNo { get; set; } = "";
         public static string seqNo { get; set; } = "";
@@ -21,9 +16,10 @@ namespace App.Net.Model
         public static string detail { get; set; } = "";
         public static bool ShowDetail { get; set; }
         public static bool ShowDenom { get; set; }
-
+        public static bool ShowRemarkes { get; set; } = true;
         public static bool isCancelSale { get; set; }
         public static string username { get; set; } = "";
+        public static string remarkes { get; set; } = "";
 
         public static int Cashin1000 { get; set; }
         public static int Cashin500 { get; set; }
@@ -49,15 +45,40 @@ namespace App.Net.Model
         public static int CashOut050 { get; set; }
         public static int CashOut025 { get; set; }
 
+        public static int CashCollect1000 { get; set; }
+        public static int CashCollect500 { get; set; }
+        public static int CashCollect100 { get; set; }
+        public static int CashCollect50 { get; set; }
+        public static int CashCollect20 { get; set; }
+        public static int CashCollect10 { get; set; }
+        public static int CashCollect5 { get; set; }
+        public static int CashCollect2 { get; set; }
+        public static int CashCollect1 { get; set; }
+        public static int CashCollect050 { get; set; }
+        public static int CashCollect025 { get; set; }
+
         public static string date { get; set; } = "";
         public static string totalSale { get; set; } = "";
+        public static string totalReceive { get; set; } = "";
         public static string totalFee { get; set; } = "";
         public static string totalRefill { get; set; } = "";
         public static string totalDeposit { get; set; } = "";
         public static string totalDispense { get; set; } = "";
+        public static string totalChangeDispense { get; set; } = "";
+        public static string totalChangeDeposit { get; set; } = "";
+        public static string totalExchangeSale { get; set; } = "";
+        public static string totalExchangeDispense { get; set; } = "";
         public static string totalRelease { get; set; } = "";
+        public static string totalRemove { get; set; } = "";
         public static string thisRelease { get; set; } = "";
+        public static string thisRemove { get; set; } = "";
         public static string thisRemaining { get; set; } = "";
+        public static string machineId { get; set; } = "";
+        public static string reqId { get; set; } = "";
+        public static string transactionDate { get; set; } = "";
+        public static string lastEndOfDay { get; set; } = "";
+        public static int transactionCount { get; set; } = 0;
+
     }
 
 }

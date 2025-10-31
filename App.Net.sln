@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Net", "App.Net\App.Net.csproj", "{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PrinetSriSaim", "..\..\SetupFileC#\PrinetSriSaim\PrinetSriSaim.vdproj", "{0F489D1D-9DF8-49D3-ACBD-DC9BF137A0EB}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PrintSTD", "..\..\ตัวติดตั้ง\PrintSTD\PrintSTD.vdproj", "{E027B0E0-593D-42B5-9BDD-C7967090EBF9}"
 EndProject
 Global
@@ -19,8 +17,6 @@ Global
 		{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F489D1D-9DF8-49D3-ACBD-DC9BF137A0EB}.Debug|Any CPU.ActiveCfg = Debug
-		{0F489D1D-9DF8-49D3-ACBD-DC9BF137A0EB}.Release|Any CPU.ActiveCfg = Release
 		{E027B0E0-593D-42B5-9BDD-C7967090EBF9}.Debug|Any CPU.ActiveCfg = Debug
 		{E027B0E0-593D-42B5-9BDD-C7967090EBF9}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection

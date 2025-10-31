@@ -85,17 +85,53 @@
             label14 = new Label();
             label15 = new Label();
             panel1 = new Panel();
-            label36 = new Label();
-            cbNamePrinter = new ComboBox();
-            txt_thisRemaining = new TextBox();
-            label37 = new Label();
-            txt_thisRelease = new TextBox();
-            label35 = new Label();
-            txt_totalRelease = new TextBox();
-            label34 = new Label();
-            txt_totalDispense = new TextBox();
-            label33 = new Label();
-            txt_totalDeposit = new TextBox();
+            label50 = new Label();
+            txt_remarkes = new TextBox();
+            label49 = new Label();
+            txtCol025 = new TextBox();
+            txtCol050 = new TextBox();
+            txtCol1 = new TextBox();
+            txtCol2 = new TextBox();
+            txtCol5 = new TextBox();
+            txtCol10 = new TextBox();
+            txtCol20 = new TextBox();
+            txtCol50 = new TextBox();
+            txtCol100 = new TextBox();
+            txtCol500 = new TextBox();
+            txtCol1000 = new TextBox();
+            label26 = new Label();
+            label25 = new Label();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            label21 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
+            label47 = new Label();
+            txt_transactionCount = new TextBox();
+            label48 = new Label();
+            txt_machineId = new TextBox();
+            label46 = new Label();
+            txt_totalReceive = new TextBox();
+            label45 = new Label();
+            txt_lastEndOfDay = new TextBox();
+            label44 = new Label();
+            txt_thisRemove = new TextBox();
+            label43 = new Label();
+            txt_totalRemove = new TextBox();
+            label42 = new Label();
+            txt_totalExchangeDispense = new TextBox();
+            label41 = new Label();
+            txt_totalExchangeSale = new TextBox();
+            label40 = new Label();
+            txt_totalChangeDeposit = new TextBox();
+            label39 = new Label();
+            txt_totalChangeDispense = new TextBox();
+            label38 = new Label();
+            textBox2 = new TextBox();
             label32 = new Label();
             txt_totalRefill = new TextBox();
             label31 = new Label();
@@ -108,17 +144,17 @@
             txt_username = new TextBox();
             label27 = new Label();
             txt_isCancelSale = new TextBox();
-            label26 = new Label();
-            label25 = new Label();
-            label24 = new Label();
-            label23 = new Label();
-            label22 = new Label();
-            label21 = new Label();
-            label20 = new Label();
-            label19 = new Label();
-            label18 = new Label();
-            label17 = new Label();
-            label16 = new Label();
+            label33 = new Label();
+            txt_totalDeposit = new TextBox();
+            label34 = new Label();
+            txt_totalDispense = new TextBox();
+            label35 = new Label();
+            txt_totalRelease = new TextBox();
+            label37 = new Label();
+            txt_thisRelease = new TextBox();
+            label36 = new Label();
+            txt_thisRemaining = new TextBox();
+            cbNamePrinter = new ComboBox();
             PTCreatus = new PictureBox();
             textBox1 = new TextBox();
             ReciveDocument = new System.Drawing.Printing.PrintDocument();
@@ -132,7 +168,7 @@
             txtstatus.BackColor = Color.Black;
             txtstatus.BorderStyle = BorderStyle.None;
             txtstatus.Cursor = Cursors.Hand;
-            txtstatus.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtstatus.Font = new Font("Segoe UI", 13.25F);
             txtstatus.ForeColor = Color.White;
             txtstatus.Location = new Point(5, 43);
             txtstatus.Multiline = true;
@@ -192,11 +228,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGray;
-            label1.Location = new Point(7, 9);
+            label1.Location = new Point(58, 5);
             label1.Name = "label1";
-            label1.Size = new Size(137, 30);
+            label1.Size = new Size(232, 30);
             label1.TabIndex = 4;
-            label1.Text = "Server Printer";
+            label1.Text = "Server Printer API V3.00";
             // 
             // txtOut1000
             // 
@@ -205,7 +241,7 @@
             txtOut1000.BorderStyle = BorderStyle.None;
             txtOut1000.Font = new Font("Segoe UI", 12F);
             txtOut1000.ForeColor = Color.White;
-            txtOut1000.Location = new Point(419, 109);
+            txtOut1000.Location = new Point(143, 355);
             txtOut1000.Name = "txtOut1000";
             txtOut1000.ReadOnly = true;
             txtOut1000.Size = new Size(52, 22);
@@ -220,7 +256,7 @@
             txtOut500.BorderStyle = BorderStyle.None;
             txtOut500.Font = new Font("Segoe UI", 12F);
             txtOut500.ForeColor = Color.White;
-            txtOut500.Location = new Point(419, 130);
+            txtOut500.Location = new Point(143, 376);
             txtOut500.Name = "txtOut500";
             txtOut500.ReadOnly = true;
             txtOut500.Size = new Size(52, 22);
@@ -235,7 +271,7 @@
             txtOut100.BorderStyle = BorderStyle.None;
             txtOut100.Font = new Font("Segoe UI", 12F);
             txtOut100.ForeColor = Color.White;
-            txtOut100.Location = new Point(419, 151);
+            txtOut100.Location = new Point(143, 397);
             txtOut100.Name = "txtOut100";
             txtOut100.ReadOnly = true;
             txtOut100.Size = new Size(52, 22);
@@ -250,7 +286,7 @@
             txtOut50.BorderStyle = BorderStyle.None;
             txtOut50.Font = new Font("Segoe UI", 12F);
             txtOut50.ForeColor = Color.White;
-            txtOut50.Location = new Point(419, 172);
+            txtOut50.Location = new Point(143, 418);
             txtOut50.Name = "txtOut50";
             txtOut50.ReadOnly = true;
             txtOut50.Size = new Size(52, 22);
@@ -265,7 +301,7 @@
             txtOut20.BorderStyle = BorderStyle.None;
             txtOut20.Font = new Font("Segoe UI", 12F);
             txtOut20.ForeColor = Color.White;
-            txtOut20.Location = new Point(419, 193);
+            txtOut20.Location = new Point(143, 439);
             txtOut20.Name = "txtOut20";
             txtOut20.ReadOnly = true;
             txtOut20.Size = new Size(52, 22);
@@ -280,7 +316,7 @@
             txtOut10.BorderStyle = BorderStyle.None;
             txtOut10.Font = new Font("Segoe UI", 12F);
             txtOut10.ForeColor = Color.White;
-            txtOut10.Location = new Point(419, 214);
+            txtOut10.Location = new Point(143, 460);
             txtOut10.Name = "txtOut10";
             txtOut10.ReadOnly = true;
             txtOut10.Size = new Size(52, 22);
@@ -295,7 +331,7 @@
             txtOut5.BorderStyle = BorderStyle.None;
             txtOut5.Font = new Font("Segoe UI", 12F);
             txtOut5.ForeColor = Color.White;
-            txtOut5.Location = new Point(419, 235);
+            txtOut5.Location = new Point(143, 481);
             txtOut5.Name = "txtOut5";
             txtOut5.ReadOnly = true;
             txtOut5.Size = new Size(52, 22);
@@ -310,7 +346,7 @@
             txtOut2.BorderStyle = BorderStyle.None;
             txtOut2.Font = new Font("Segoe UI", 12F);
             txtOut2.ForeColor = Color.White;
-            txtOut2.Location = new Point(419, 256);
+            txtOut2.Location = new Point(143, 502);
             txtOut2.Name = "txtOut2";
             txtOut2.ReadOnly = true;
             txtOut2.Size = new Size(52, 22);
@@ -325,7 +361,7 @@
             txtOut1.BorderStyle = BorderStyle.None;
             txtOut1.Font = new Font("Segoe UI", 12F);
             txtOut1.ForeColor = Color.White;
-            txtOut1.Location = new Point(419, 277);
+            txtOut1.Location = new Point(143, 523);
             txtOut1.Name = "txtOut1";
             txtOut1.ReadOnly = true;
             txtOut1.Size = new Size(52, 22);
@@ -340,7 +376,7 @@
             txtOut050.BorderStyle = BorderStyle.None;
             txtOut050.Font = new Font("Segoe UI", 12F);
             txtOut050.ForeColor = Color.White;
-            txtOut050.Location = new Point(419, 298);
+            txtOut050.Location = new Point(143, 544);
             txtOut050.Name = "txtOut050";
             txtOut050.ReadOnly = true;
             txtOut050.Size = new Size(52, 22);
@@ -355,7 +391,7 @@
             txtOut025.BorderStyle = BorderStyle.None;
             txtOut025.Font = new Font("Segoe UI", 12F);
             txtOut025.ForeColor = Color.White;
-            txtOut025.Location = new Point(420, 320);
+            txtOut025.Location = new Point(143, 568);
             txtOut025.Name = "txtOut025";
             txtOut025.ReadOnly = true;
             txtOut025.Size = new Size(52, 22);
@@ -370,7 +406,7 @@
             txtIn1000.BorderStyle = BorderStyle.None;
             txtIn1000.Font = new Font("Segoe UI", 12F);
             txtIn1000.ForeColor = Color.White;
-            txtIn1000.Location = new Point(344, 109);
+            txtIn1000.Location = new Point(68, 355);
             txtIn1000.Name = "txtIn1000";
             txtIn1000.ReadOnly = true;
             txtIn1000.Size = new Size(52, 22);
@@ -385,7 +421,7 @@
             txtIn500.BorderStyle = BorderStyle.None;
             txtIn500.Font = new Font("Segoe UI", 12F);
             txtIn500.ForeColor = Color.White;
-            txtIn500.Location = new Point(344, 130);
+            txtIn500.Location = new Point(68, 376);
             txtIn500.Name = "txtIn500";
             txtIn500.ReadOnly = true;
             txtIn500.Size = new Size(52, 22);
@@ -400,7 +436,7 @@
             txtIn100.BorderStyle = BorderStyle.None;
             txtIn100.Font = new Font("Segoe UI", 12F);
             txtIn100.ForeColor = Color.White;
-            txtIn100.Location = new Point(344, 151);
+            txtIn100.Location = new Point(68, 397);
             txtIn100.Name = "txtIn100";
             txtIn100.ReadOnly = true;
             txtIn100.Size = new Size(52, 22);
@@ -415,7 +451,7 @@
             txtIn50.BorderStyle = BorderStyle.None;
             txtIn50.Font = new Font("Segoe UI", 12F);
             txtIn50.ForeColor = Color.White;
-            txtIn50.Location = new Point(344, 172);
+            txtIn50.Location = new Point(68, 418);
             txtIn50.Name = "txtIn50";
             txtIn50.ReadOnly = true;
             txtIn50.Size = new Size(52, 22);
@@ -430,7 +466,7 @@
             txtIn20.BorderStyle = BorderStyle.None;
             txtIn20.Font = new Font("Segoe UI", 12F);
             txtIn20.ForeColor = Color.White;
-            txtIn20.Location = new Point(344, 193);
+            txtIn20.Location = new Point(68, 439);
             txtIn20.Name = "txtIn20";
             txtIn20.ReadOnly = true;
             txtIn20.Size = new Size(52, 22);
@@ -445,7 +481,7 @@
             txtIn10.BorderStyle = BorderStyle.None;
             txtIn10.Font = new Font("Segoe UI", 12F);
             txtIn10.ForeColor = Color.White;
-            txtIn10.Location = new Point(344, 214);
+            txtIn10.Location = new Point(68, 460);
             txtIn10.Name = "txtIn10";
             txtIn10.ReadOnly = true;
             txtIn10.Size = new Size(52, 22);
@@ -460,7 +496,7 @@
             txtIn5.BorderStyle = BorderStyle.None;
             txtIn5.Font = new Font("Segoe UI", 12F);
             txtIn5.ForeColor = Color.White;
-            txtIn5.Location = new Point(344, 235);
+            txtIn5.Location = new Point(68, 481);
             txtIn5.Name = "txtIn5";
             txtIn5.ReadOnly = true;
             txtIn5.Size = new Size(52, 22);
@@ -475,7 +511,7 @@
             txtIn2.BorderStyle = BorderStyle.None;
             txtIn2.Font = new Font("Segoe UI", 12F);
             txtIn2.ForeColor = Color.White;
-            txtIn2.Location = new Point(344, 256);
+            txtIn2.Location = new Point(68, 502);
             txtIn2.Name = "txtIn2";
             txtIn2.ReadOnly = true;
             txtIn2.Size = new Size(52, 22);
@@ -490,7 +526,7 @@
             txtIn1.BorderStyle = BorderStyle.None;
             txtIn1.Font = new Font("Segoe UI", 12F);
             txtIn1.ForeColor = Color.White;
-            txtIn1.Location = new Point(344, 277);
+            txtIn1.Location = new Point(68, 523);
             txtIn1.Name = "txtIn1";
             txtIn1.ReadOnly = true;
             txtIn1.Size = new Size(52, 22);
@@ -505,7 +541,7 @@
             txtIn050.BorderStyle = BorderStyle.None;
             txtIn050.Font = new Font("Segoe UI", 12F);
             txtIn050.ForeColor = Color.White;
-            txtIn050.Location = new Point(344, 298);
+            txtIn050.Location = new Point(68, 544);
             txtIn050.Name = "txtIn050";
             txtIn050.ReadOnly = true;
             txtIn050.Size = new Size(52, 22);
@@ -520,7 +556,7 @@
             txtIn025.BorderStyle = BorderStyle.None;
             txtIn025.Font = new Font("Segoe UI", 12F);
             txtIn025.ForeColor = Color.White;
-            txtIn025.Location = new Point(345, 320);
+            txtIn025.Location = new Point(68, 568);
             txtIn025.Name = "txtIn025";
             txtIn025.ReadOnly = true;
             txtIn025.Size = new Size(52, 22);
@@ -535,7 +571,7 @@
             txt_printType.BorderStyle = BorderStyle.None;
             txt_printType.Font = new Font("Segoe UI", 12F);
             txt_printType.ForeColor = Color.White;
-            txt_printType.Location = new Point(150, 50);
+            txt_printType.Location = new Point(140, 6);
             txt_printType.Name = "txt_printType";
             txt_printType.ReadOnly = true;
             txt_printType.Size = new Size(114, 22);
@@ -549,7 +585,7 @@
             txt_txNo.BorderStyle = BorderStyle.None;
             txt_txNo.Font = new Font("Segoe UI", 12F);
             txt_txNo.ForeColor = Color.White;
-            txt_txNo.Location = new Point(150, 71);
+            txt_txNo.Location = new Point(140, 27);
             txt_txNo.Name = "txt_txNo";
             txt_txNo.ReadOnly = true;
             txt_txNo.Size = new Size(114, 22);
@@ -563,7 +599,7 @@
             txt_reqNo.BorderStyle = BorderStyle.None;
             txt_reqNo.Font = new Font("Segoe UI", 12F);
             txt_reqNo.ForeColor = Color.White;
-            txt_reqNo.Location = new Point(150, 92);
+            txt_reqNo.Location = new Point(140, 48);
             txt_reqNo.Name = "txt_reqNo";
             txt_reqNo.ReadOnly = true;
             txt_reqNo.Size = new Size(114, 22);
@@ -577,7 +613,7 @@
             txt_seqNo.BorderStyle = BorderStyle.None;
             txt_seqNo.Font = new Font("Segoe UI", 12F);
             txt_seqNo.ForeColor = Color.White;
-            txt_seqNo.Location = new Point(150, 113);
+            txt_seqNo.Location = new Point(140, 69);
             txt_seqNo.Name = "txt_seqNo";
             txt_seqNo.ReadOnly = true;
             txt_seqNo.Size = new Size(114, 22);
@@ -591,7 +627,7 @@
             txt_amount.BorderStyle = BorderStyle.None;
             txt_amount.Font = new Font("Segoe UI", 12F);
             txt_amount.ForeColor = Color.White;
-            txt_amount.Location = new Point(150, 134);
+            txt_amount.Location = new Point(140, 90);
             txt_amount.Name = "txt_amount";
             txt_amount.ReadOnly = true;
             txt_amount.Size = new Size(114, 22);
@@ -605,7 +641,7 @@
             txt_cashin.BorderStyle = BorderStyle.None;
             txt_cashin.Font = new Font("Segoe UI", 12F);
             txt_cashin.ForeColor = Color.White;
-            txt_cashin.Location = new Point(150, 155);
+            txt_cashin.Location = new Point(140, 111);
             txt_cashin.Name = "txt_cashin";
             txt_cashin.ReadOnly = true;
             txt_cashin.Size = new Size(114, 22);
@@ -619,7 +655,7 @@
             txt_change.BorderStyle = BorderStyle.None;
             txt_change.Font = new Font("Segoe UI", 12F);
             txt_change.ForeColor = Color.White;
-            txt_change.Location = new Point(150, 176);
+            txt_change.Location = new Point(140, 132);
             txt_change.Name = "txt_change";
             txt_change.ReadOnly = true;
             txt_change.Size = new Size(114, 22);
@@ -633,10 +669,10 @@
             txt_denom.BorderStyle = BorderStyle.None;
             txt_denom.Font = new Font("Segoe UI", 12F);
             txt_denom.ForeColor = Color.White;
-            txt_denom.Location = new Point(150, 197);
+            txt_denom.Location = new Point(140, 153);
             txt_denom.Name = "txt_denom";
             txt_denom.ReadOnly = true;
-            txt_denom.Size = new Size(114, 22);
+            txt_denom.Size = new Size(101, 22);
             txt_denom.TabIndex = 34;
             txt_denom.Text = "-";
             // 
@@ -647,7 +683,7 @@
             txt_txDate.BorderStyle = BorderStyle.None;
             txt_txDate.Font = new Font("Segoe UI", 12F);
             txt_txDate.ForeColor = Color.White;
-            txt_txDate.Location = new Point(150, 218);
+            txt_txDate.Location = new Point(140, 174);
             txt_txDate.Name = "txt_txDate";
             txt_txDate.ReadOnly = true;
             txt_txDate.Size = new Size(114, 22);
@@ -661,7 +697,7 @@
             txt_details.BorderStyle = BorderStyle.None;
             txt_details.Font = new Font("Segoe UI", 12F);
             txt_details.ForeColor = Color.White;
-            txt_details.Location = new Point(150, 239);
+            txt_details.Location = new Point(140, 195);
             txt_details.Name = "txt_details";
             txt_details.ReadOnly = true;
             txt_details.Size = new Size(114, 22);
@@ -675,7 +711,7 @@
             txt_showDetail.BorderStyle = BorderStyle.None;
             txt_showDetail.Font = new Font("Segoe UI", 12F);
             txt_showDetail.ForeColor = Color.White;
-            txt_showDetail.Location = new Point(150, 260);
+            txt_showDetail.Location = new Point(140, 216);
             txt_showDetail.Name = "txt_showDetail";
             txt_showDetail.ReadOnly = true;
             txt_showDetail.Size = new Size(114, 22);
@@ -689,7 +725,7 @@
             txt_showDenom.BorderStyle = BorderStyle.None;
             txt_showDenom.Font = new Font("Segoe UI", 12F);
             txt_showDenom.ForeColor = Color.White;
-            txt_showDenom.Location = new Point(150, 281);
+            txt_showDenom.Location = new Point(140, 237);
             txt_showDenom.Name = "txt_showDenom";
             txt_showDenom.ReadOnly = true;
             txt_showDenom.Size = new Size(114, 22);
@@ -703,7 +739,7 @@
             txtvalue.BorderStyle = BorderStyle.FixedSingle;
             txtvalue.Font = new Font("Segoe UI", 12F);
             txtvalue.ForeColor = Color.White;
-            txtvalue.Location = new Point(363, 348);
+            txtvalue.Location = new Point(407, 534);
             txtvalue.Name = "txtvalue";
             txtvalue.Size = new Size(114, 29);
             txtvalue.TabIndex = 39;
@@ -716,23 +752,25 @@
             txtPayout.BorderStyle = BorderStyle.FixedSingle;
             txtPayout.Font = new Font("Microsoft Sans Serif", 9.75F);
             txtPayout.ForeColor = Color.White;
-            txtPayout.Location = new Point(363, 386);
+            txtPayout.Location = new Point(297, 348);
+            txtPayout.Multiline = true;
             txtPayout.Name = "txtPayout";
-            txtPayout.Size = new Size(114, 22);
+            txtPayout.Size = new Size(242, 242);
             txtPayout.TabIndex = 40;
-            txtPayout.Visible = false;
             // 
             // bt_set
             // 
             bt_set.Anchor = AnchorStyles.None;
             bt_set.BackColor = Color.FromArgb(24, 68, 195);
+            bt_set.Cursor = Cursors.Hand;
             bt_set.ForeColor = Color.White;
-            bt_set.Location = new Point(386, 13);
+            bt_set.Location = new Point(1087, 9);
             bt_set.Name = "bt_set";
-            bt_set.Size = new Size(91, 29);
+            bt_set.Size = new Size(94, 29);
             bt_set.TabIndex = 41;
             bt_set.Text = "setprintter";
             bt_set.UseVisualStyleBackColor = false;
+            bt_set.Visible = false;
             bt_set.Click += bt_set_Click;
             // 
             // label2
@@ -741,7 +779,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(101, 50);
+            label2.Location = new Point(91, 6);
             label2.Name = "label2";
             label2.Size = new Size(47, 21);
             label2.TabIndex = 42;
@@ -753,7 +791,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(98, 72);
+            label3.Location = new Point(88, 28);
             label3.Name = "label3";
             label3.Size = new Size(50, 21);
             label3.TabIndex = 43;
@@ -765,7 +803,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(93, 91);
+            label4.Location = new Point(83, 47);
             label4.Name = "label4";
             label4.Size = new Size(55, 21);
             label4.TabIndex = 44;
@@ -777,7 +815,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(85, 113);
+            label5.Location = new Point(75, 69);
             label5.Name = "label5";
             label5.Size = new Size(62, 21);
             label5.TabIndex = 45;
@@ -789,7 +827,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(77, 135);
+            label6.Location = new Point(67, 91);
             label6.Name = "label6";
             label6.Size = new Size(71, 21);
             label6.TabIndex = 46;
@@ -801,7 +839,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(86, 156);
+            label7.Location = new Point(76, 112);
             label7.Name = "label7";
             label7.Size = new Size(61, 21);
             label7.TabIndex = 47;
@@ -813,7 +851,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(80, 177);
+            label8.Location = new Point(70, 133);
             label8.Name = "label8";
             label8.Size = new Size(67, 21);
             label8.TabIndex = 48;
@@ -825,7 +863,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F);
             label9.ForeColor = Color.White;
-            label9.Location = new Point(82, 198);
+            label9.Location = new Point(72, 154);
             label9.Name = "label9";
             label9.Size = new Size(66, 21);
             label9.TabIndex = 49;
@@ -837,7 +875,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(100, 218);
+            label10.Location = new Point(90, 174);
             label10.Name = "label10";
             label10.Size = new Size(49, 21);
             label10.TabIndex = 50;
@@ -849,7 +887,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(86, 239);
+            label11.Location = new Point(76, 195);
             label11.Name = "label11";
             label11.Size = new Size(62, 21);
             label11.TabIndex = 51;
@@ -861,7 +899,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 12F);
             label12.ForeColor = Color.White;
-            label12.Location = new Point(43, 261);
+            label12.Location = new Point(33, 217);
             label12.Name = "label12";
             label12.Size = new Size(105, 21);
             label12.TabIndex = 52;
@@ -873,7 +911,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 12F);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(43, 281);
+            label13.Location = new Point(33, 237);
             label13.Name = "label13";
             label13.Size = new Size(105, 21);
             label13.TabIndex = 53;
@@ -885,7 +923,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 12F);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(347, 79);
+            label14.Location = new Point(71, 325);
             label14.Name = "label14";
             label14.Size = new Size(57, 21);
             label14.TabIndex = 54;
@@ -897,7 +935,7 @@
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 12F);
             label15.ForeColor = Color.White;
-            label15.Location = new Point(407, 79);
+            label15.Location = new Point(131, 325);
             label15.Name = "label15";
             label15.Size = new Size(70, 21);
             label15.TabIndex = 55;
@@ -905,30 +943,24 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.Black;
-            panel1.Controls.Add(label36);
-            panel1.Controls.Add(cbNamePrinter);
-            panel1.Controls.Add(txt_thisRemaining);
-            panel1.Controls.Add(label37);
-            panel1.Controls.Add(txt_thisRelease);
-            panel1.Controls.Add(label35);
-            panel1.Controls.Add(txt_totalRelease);
-            panel1.Controls.Add(label34);
-            panel1.Controls.Add(txt_totalDispense);
-            panel1.Controls.Add(label33);
-            panel1.Controls.Add(txt_totalDeposit);
-            panel1.Controls.Add(label32);
-            panel1.Controls.Add(txt_totalRefill);
-            panel1.Controls.Add(label31);
-            panel1.Controls.Add(txt_totalFee);
-            panel1.Controls.Add(label30);
-            panel1.Controls.Add(txt_totalSale);
-            panel1.Controls.Add(label29);
-            panel1.Controls.Add(txt_customer);
-            panel1.Controls.Add(label28);
-            panel1.Controls.Add(txt_username);
-            panel1.Controls.Add(label27);
-            panel1.Controls.Add(txt_isCancelSale);
+            panel1.Controls.Add(txtPayout);
+            panel1.Controls.Add(label50);
+            panel1.Controls.Add(txt_remarkes);
+            panel1.Controls.Add(label49);
+            panel1.Controls.Add(txtCol025);
+            panel1.Controls.Add(txtCol050);
+            panel1.Controls.Add(txtCol1);
+            panel1.Controls.Add(txtCol2);
+            panel1.Controls.Add(txtCol5);
+            panel1.Controls.Add(txtCol10);
+            panel1.Controls.Add(txtCol20);
+            panel1.Controls.Add(txtCol50);
+            panel1.Controls.Add(txtCol100);
+            panel1.Controls.Add(txtvalue);
+            panel1.Controls.Add(txtCol500);
+            panel1.Controls.Add(txtCol1000);
             panel1.Controls.Add(label26);
             panel1.Controls.Add(label25);
             panel1.Controls.Add(label24);
@@ -940,36 +972,8 @@
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(label16);
-            panel1.Controls.Add(PTCreatus);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(label13);
-            panel1.Controls.Add(label12);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(bt_set);
-            panel1.Controls.Add(txtPayout);
-            panel1.Controls.Add(txtvalue);
-            panel1.Controls.Add(txt_showDenom);
-            panel1.Controls.Add(txt_showDetail);
-            panel1.Controls.Add(txt_details);
-            panel1.Controls.Add(txt_txDate);
-            panel1.Controls.Add(txt_denom);
-            panel1.Controls.Add(txt_change);
-            panel1.Controls.Add(txt_cashin);
-            panel1.Controls.Add(txt_amount);
-            panel1.Controls.Add(txt_seqNo);
-            panel1.Controls.Add(txt_reqNo);
-            panel1.Controls.Add(txt_txNo);
-            panel1.Controls.Add(txt_printType);
             panel1.Controls.Add(txtIn025);
             panel1.Controls.Add(txtIn050);
             panel1.Controls.Add(txtIn1);
@@ -992,154 +996,703 @@
             panel1.Controls.Add(txtOut100);
             panel1.Controls.Add(txtOut500);
             panel1.Controls.Add(txtOut1000);
-            panel1.Location = new Point(828, 47);
+            panel1.Controls.Add(label47);
+            panel1.Controls.Add(txt_transactionCount);
+            panel1.Controls.Add(label48);
+            panel1.Controls.Add(txt_machineId);
+            panel1.Controls.Add(label46);
+            panel1.Controls.Add(txt_totalReceive);
+            panel1.Controls.Add(label45);
+            panel1.Controls.Add(txt_lastEndOfDay);
+            panel1.Controls.Add(label44);
+            panel1.Controls.Add(txt_thisRemove);
+            panel1.Controls.Add(label43);
+            panel1.Controls.Add(txt_totalRemove);
+            panel1.Controls.Add(label42);
+            panel1.Controls.Add(txt_totalExchangeDispense);
+            panel1.Controls.Add(label41);
+            panel1.Controls.Add(txt_totalExchangeSale);
+            panel1.Controls.Add(label40);
+            panel1.Controls.Add(txt_totalChangeDeposit);
+            panel1.Controls.Add(label39);
+            panel1.Controls.Add(txt_totalChangeDispense);
+            panel1.Controls.Add(label38);
+            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(label32);
+            panel1.Controls.Add(txt_totalRefill);
+            panel1.Controls.Add(label31);
+            panel1.Controls.Add(txt_totalFee);
+            panel1.Controls.Add(label30);
+            panel1.Controls.Add(txt_totalSale);
+            panel1.Controls.Add(label29);
+            panel1.Controls.Add(txt_customer);
+            panel1.Controls.Add(label28);
+            panel1.Controls.Add(txt_username);
+            panel1.Controls.Add(label27);
+            panel1.Controls.Add(txt_isCancelSale);
+            panel1.Controls.Add(label13);
+            panel1.Controls.Add(label12);
+            panel1.Controls.Add(label11);
+            panel1.Controls.Add(label10);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txt_showDenom);
+            panel1.Controls.Add(txt_showDetail);
+            panel1.Controls.Add(txt_details);
+            panel1.Controls.Add(txt_txDate);
+            panel1.Controls.Add(txt_denom);
+            panel1.Controls.Add(txt_change);
+            panel1.Controls.Add(txt_cashin);
+            panel1.Controls.Add(txt_amount);
+            panel1.Controls.Add(txt_seqNo);
+            panel1.Controls.Add(txt_reqNo);
+            panel1.Controls.Add(txt_txNo);
+            panel1.Controls.Add(txt_printType);
+            panel1.Controls.Add(label33);
+            panel1.Controls.Add(txt_totalDeposit);
+            panel1.Controls.Add(label34);
+            panel1.Controls.Add(txt_totalDispense);
+            panel1.Controls.Add(label35);
+            panel1.Controls.Add(txt_totalRelease);
+            panel1.Controls.Add(label37);
+            panel1.Controls.Add(txt_thisRelease);
+            panel1.Controls.Add(label36);
+            panel1.Controls.Add(txt_thisRemaining);
+            panel1.Cursor = Cursors.Help;
+            panel1.Location = new Point(783, 45);
             panel1.Name = "panel1";
-            panel1.Size = new Size(505, 600);
+            panel1.Size = new Size(558, 619);
             panel1.TabIndex = 56;
             panel1.Visible = false;
             // 
-            // label36
+            // label50
             // 
-            label36.Anchor = AnchorStyles.None;
-            label36.AutoSize = true;
-            label36.Font = new Font("Segoe UI", 12F);
-            label36.ForeColor = Color.White;
-            label36.Location = new Point(32, 571);
-            label36.Name = "label36";
-            label36.Size = new Size(117, 21);
-            label36.TabIndex = 89;
-            label36.Text = "thisRemaining :";
+            label50.Anchor = AnchorStyles.None;
+            label50.AutoSize = true;
+            label50.Font = new Font("Segoe UI", 12F);
+            label50.ForeColor = Color.White;
+            label50.Location = new Point(331, 408);
+            label50.Name = "label50";
+            label50.Size = new Size(82, 21);
+            label50.TabIndex = 127;
+            label50.Text = "remarkes :";
+            label50.Visible = false;
             // 
-            // cbNamePrinter
+            // txt_remarkes
             // 
-            cbNamePrinter.BackColor = Color.Black;
-            cbNamePrinter.Cursor = Cursors.Hand;
-            cbNamePrinter.Font = new Font("Segoe UI", 12F);
-            cbNamePrinter.ForeColor = Color.White;
-            cbNamePrinter.FormattingEnabled = true;
-            cbNamePrinter.Location = new Point(37, 13);
-            cbNamePrinter.Name = "cbNamePrinter";
-            cbNamePrinter.Size = new Size(343, 29);
-            cbNamePrinter.TabIndex = 58;
-            cbNamePrinter.Text = "asdasdasd";
+            txt_remarkes.Anchor = AnchorStyles.None;
+            txt_remarkes.BackColor = Color.Black;
+            txt_remarkes.BorderStyle = BorderStyle.None;
+            txt_remarkes.Font = new Font("Segoe UI", 12F);
+            txt_remarkes.ForeColor = Color.White;
+            txt_remarkes.Location = new Point(414, 407);
+            txt_remarkes.Name = "txt_remarkes";
+            txt_remarkes.ReadOnly = true;
+            txt_remarkes.Size = new Size(114, 22);
+            txt_remarkes.TabIndex = 126;
+            txt_remarkes.Text = "-";
+            txt_remarkes.Visible = false;
             // 
-            // txt_thisRemaining
+            // label49
             // 
-            txt_thisRemaining.Anchor = AnchorStyles.None;
-            txt_thisRemaining.BackColor = Color.Black;
-            txt_thisRemaining.BorderStyle = BorderStyle.None;
-            txt_thisRemaining.Font = new Font("Segoe UI", 12F);
-            txt_thisRemaining.ForeColor = Color.White;
-            txt_thisRemaining.Location = new Point(149, 570);
-            txt_thisRemaining.Name = "txt_thisRemaining";
-            txt_thisRemaining.ReadOnly = true;
-            txt_thisRemaining.Size = new Size(114, 22);
-            txt_thisRemaining.TabIndex = 88;
-            txt_thisRemaining.Text = "-";
+            label49.Anchor = AnchorStyles.None;
+            label49.AutoSize = true;
+            label49.Font = new Font("Segoe UI", 12F);
+            label49.ForeColor = Color.White;
+            label49.Location = new Point(215, 324);
+            label49.Name = "label49";
+            label49.Size = new Size(57, 21);
+            label49.TabIndex = 125;
+            label49.Text = "Collect";
             // 
-            // label37
+            // txtCol025
             // 
-            label37.Anchor = AnchorStyles.None;
-            label37.AutoSize = true;
-            label37.Font = new Font("Segoe UI", 12F);
-            label37.ForeColor = Color.White;
-            label37.Location = new Point(53, 542);
-            label37.Name = "label37";
-            label37.Size = new Size(95, 21);
-            label37.TabIndex = 87;
-            label37.Text = "thisRelease :";
+            txtCol025.Anchor = AnchorStyles.None;
+            txtCol025.BackColor = Color.Black;
+            txtCol025.BorderStyle = BorderStyle.None;
+            txtCol025.Font = new Font("Segoe UI", 12F);
+            txtCol025.ForeColor = Color.White;
+            txtCol025.Location = new Point(219, 568);
+            txtCol025.Name = "txtCol025";
+            txtCol025.ReadOnly = true;
+            txtCol025.Size = new Size(52, 22);
+            txtCol025.TabIndex = 124;
+            txtCol025.Text = "-";
+            txtCol025.TextAlign = HorizontalAlignment.Right;
             // 
-            // txt_thisRelease
+            // txtCol050
             // 
-            txt_thisRelease.Anchor = AnchorStyles.None;
-            txt_thisRelease.BackColor = Color.Black;
-            txt_thisRelease.BorderStyle = BorderStyle.None;
-            txt_thisRelease.Font = new Font("Segoe UI", 12F);
-            txt_thisRelease.ForeColor = Color.White;
-            txt_thisRelease.Location = new Point(150, 542);
-            txt_thisRelease.Name = "txt_thisRelease";
-            txt_thisRelease.ReadOnly = true;
-            txt_thisRelease.Size = new Size(114, 22);
-            txt_thisRelease.TabIndex = 86;
-            txt_thisRelease.Text = "-";
+            txtCol050.Anchor = AnchorStyles.None;
+            txtCol050.BackColor = Color.Black;
+            txtCol050.BorderStyle = BorderStyle.None;
+            txtCol050.Font = new Font("Segoe UI", 12F);
+            txtCol050.ForeColor = Color.White;
+            txtCol050.Location = new Point(219, 544);
+            txtCol050.Name = "txtCol050";
+            txtCol050.ReadOnly = true;
+            txtCol050.Size = new Size(52, 22);
+            txtCol050.TabIndex = 123;
+            txtCol050.Text = "-";
+            txtCol050.TextAlign = HorizontalAlignment.Right;
             // 
-            // label35
+            // txtCol1
             // 
-            label35.Anchor = AnchorStyles.None;
-            label35.AutoSize = true;
-            label35.Font = new Font("Segoe UI", 12F);
-            label35.ForeColor = Color.White;
-            label35.Location = new Point(46, 514);
-            label35.Name = "label35";
-            label35.Size = new Size(101, 21);
-            label35.TabIndex = 85;
-            label35.Text = "totalRelease :";
+            txtCol1.Anchor = AnchorStyles.None;
+            txtCol1.BackColor = Color.Black;
+            txtCol1.BorderStyle = BorderStyle.None;
+            txtCol1.Font = new Font("Segoe UI", 12F);
+            txtCol1.ForeColor = Color.White;
+            txtCol1.Location = new Point(219, 523);
+            txtCol1.Name = "txtCol1";
+            txtCol1.ReadOnly = true;
+            txtCol1.Size = new Size(52, 22);
+            txtCol1.TabIndex = 122;
+            txtCol1.Text = "-";
+            txtCol1.TextAlign = HorizontalAlignment.Right;
             // 
-            // txt_totalRelease
+            // txtCol2
             // 
-            txt_totalRelease.Anchor = AnchorStyles.None;
-            txt_totalRelease.BackColor = Color.Black;
-            txt_totalRelease.BorderStyle = BorderStyle.None;
-            txt_totalRelease.Font = new Font("Segoe UI", 12F);
-            txt_totalRelease.ForeColor = Color.White;
-            txt_totalRelease.Location = new Point(149, 514);
-            txt_totalRelease.Name = "txt_totalRelease";
-            txt_totalRelease.ReadOnly = true;
-            txt_totalRelease.Size = new Size(114, 22);
-            txt_totalRelease.TabIndex = 84;
-            txt_totalRelease.Text = "-";
+            txtCol2.Anchor = AnchorStyles.None;
+            txtCol2.BackColor = Color.Black;
+            txtCol2.BorderStyle = BorderStyle.None;
+            txtCol2.Font = new Font("Segoe UI", 12F);
+            txtCol2.ForeColor = Color.White;
+            txtCol2.Location = new Point(219, 502);
+            txtCol2.Name = "txtCol2";
+            txtCol2.ReadOnly = true;
+            txtCol2.Size = new Size(52, 22);
+            txtCol2.TabIndex = 121;
+            txtCol2.Text = "-";
+            txtCol2.TextAlign = HorizontalAlignment.Right;
             // 
-            // label34
+            // txtCol5
             // 
-            label34.Anchor = AnchorStyles.None;
-            label34.AutoSize = true;
-            label34.Font = new Font("Segoe UI", 12F);
-            label34.ForeColor = Color.White;
-            label34.Location = new Point(37, 486);
-            label34.Name = "label34";
-            label34.Size = new Size(111, 21);
-            label34.TabIndex = 83;
-            label34.Text = "totalDispense :";
+            txtCol5.Anchor = AnchorStyles.None;
+            txtCol5.BackColor = Color.Black;
+            txtCol5.BorderStyle = BorderStyle.None;
+            txtCol5.Font = new Font("Segoe UI", 12F);
+            txtCol5.ForeColor = Color.White;
+            txtCol5.Location = new Point(219, 481);
+            txtCol5.Name = "txtCol5";
+            txtCol5.ReadOnly = true;
+            txtCol5.Size = new Size(52, 22);
+            txtCol5.TabIndex = 120;
+            txtCol5.Text = "-";
+            txtCol5.TextAlign = HorizontalAlignment.Right;
             // 
-            // txt_totalDispense
+            // txtCol10
             // 
-            txt_totalDispense.Anchor = AnchorStyles.None;
-            txt_totalDispense.BackColor = Color.Black;
-            txt_totalDispense.BorderStyle = BorderStyle.None;
-            txt_totalDispense.Font = new Font("Segoe UI", 12F);
-            txt_totalDispense.ForeColor = Color.White;
-            txt_totalDispense.Location = new Point(150, 486);
-            txt_totalDispense.Name = "txt_totalDispense";
-            txt_totalDispense.ReadOnly = true;
-            txt_totalDispense.Size = new Size(114, 22);
-            txt_totalDispense.TabIndex = 82;
-            txt_totalDispense.Text = "-";
+            txtCol10.Anchor = AnchorStyles.None;
+            txtCol10.BackColor = Color.Black;
+            txtCol10.BorderStyle = BorderStyle.None;
+            txtCol10.Font = new Font("Segoe UI", 12F);
+            txtCol10.ForeColor = Color.White;
+            txtCol10.Location = new Point(219, 460);
+            txtCol10.Name = "txtCol10";
+            txtCol10.ReadOnly = true;
+            txtCol10.Size = new Size(52, 22);
+            txtCol10.TabIndex = 119;
+            txtCol10.Text = "-";
+            txtCol10.TextAlign = HorizontalAlignment.Right;
             // 
-            // label33
+            // txtCol20
             // 
-            label33.Anchor = AnchorStyles.None;
-            label33.AutoSize = true;
-            label33.Font = new Font("Segoe UI", 12F);
-            label33.ForeColor = Color.White;
-            label33.Location = new Point(46, 459);
-            label33.Name = "label33";
-            label33.Size = new Size(101, 21);
-            label33.TabIndex = 81;
-            label33.Text = "totalDeposit :";
+            txtCol20.Anchor = AnchorStyles.None;
+            txtCol20.BackColor = Color.Black;
+            txtCol20.BorderStyle = BorderStyle.None;
+            txtCol20.Font = new Font("Segoe UI", 12F);
+            txtCol20.ForeColor = Color.White;
+            txtCol20.Location = new Point(219, 439);
+            txtCol20.Name = "txtCol20";
+            txtCol20.ReadOnly = true;
+            txtCol20.Size = new Size(52, 22);
+            txtCol20.TabIndex = 118;
+            txtCol20.Text = "-";
+            txtCol20.TextAlign = HorizontalAlignment.Right;
             // 
-            // txt_totalDeposit
+            // txtCol50
             // 
-            txt_totalDeposit.Anchor = AnchorStyles.None;
-            txt_totalDeposit.BackColor = Color.Black;
-            txt_totalDeposit.BorderStyle = BorderStyle.None;
-            txt_totalDeposit.Font = new Font("Segoe UI", 12F);
-            txt_totalDeposit.ForeColor = Color.White;
-            txt_totalDeposit.Location = new Point(150, 458);
-            txt_totalDeposit.Name = "txt_totalDeposit";
-            txt_totalDeposit.ReadOnly = true;
-            txt_totalDeposit.Size = new Size(114, 22);
-            txt_totalDeposit.TabIndex = 80;
-            txt_totalDeposit.Text = "-";
+            txtCol50.Anchor = AnchorStyles.None;
+            txtCol50.BackColor = Color.Black;
+            txtCol50.BorderStyle = BorderStyle.None;
+            txtCol50.Font = new Font("Segoe UI", 12F);
+            txtCol50.ForeColor = Color.White;
+            txtCol50.Location = new Point(219, 418);
+            txtCol50.Name = "txtCol50";
+            txtCol50.ReadOnly = true;
+            txtCol50.Size = new Size(52, 22);
+            txtCol50.TabIndex = 117;
+            txtCol50.Text = "-";
+            txtCol50.TextAlign = HorizontalAlignment.Right;
+            // 
+            // txtCol100
+            // 
+            txtCol100.Anchor = AnchorStyles.None;
+            txtCol100.BackColor = Color.Black;
+            txtCol100.BorderStyle = BorderStyle.None;
+            txtCol100.Font = new Font("Segoe UI", 12F);
+            txtCol100.ForeColor = Color.White;
+            txtCol100.Location = new Point(219, 397);
+            txtCol100.Name = "txtCol100";
+            txtCol100.ReadOnly = true;
+            txtCol100.Size = new Size(52, 22);
+            txtCol100.TabIndex = 116;
+            txtCol100.Text = "-";
+            txtCol100.TextAlign = HorizontalAlignment.Right;
+            // 
+            // txtCol500
+            // 
+            txtCol500.Anchor = AnchorStyles.None;
+            txtCol500.BackColor = Color.Black;
+            txtCol500.BorderStyle = BorderStyle.None;
+            txtCol500.Font = new Font("Segoe UI", 12F);
+            txtCol500.ForeColor = Color.White;
+            txtCol500.Location = new Point(219, 376);
+            txtCol500.Name = "txtCol500";
+            txtCol500.ReadOnly = true;
+            txtCol500.Size = new Size(52, 22);
+            txtCol500.TabIndex = 115;
+            txtCol500.Text = "-";
+            txtCol500.TextAlign = HorizontalAlignment.Right;
+            // 
+            // txtCol1000
+            // 
+            txtCol1000.Anchor = AnchorStyles.None;
+            txtCol1000.BackColor = Color.Black;
+            txtCol1000.BorderStyle = BorderStyle.None;
+            txtCol1000.Font = new Font("Segoe UI", 12F);
+            txtCol1000.ForeColor = Color.White;
+            txtCol1000.Location = new Point(219, 355);
+            txtCol1000.Name = "txtCol1000";
+            txtCol1000.ReadOnly = true;
+            txtCol1000.Size = new Size(52, 22);
+            txtCol1000.TabIndex = 114;
+            txtCol1000.Text = "-";
+            txtCol1000.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label26
+            // 
+            label26.Anchor = AnchorStyles.None;
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 12F);
+            label26.ForeColor = Color.White;
+            label26.Location = new Point(28, 565);
+            label26.Name = "label26";
+            label26.Size = new Size(47, 21);
+            label26.TabIndex = 67;
+            label26.Text = "0.25 :";
+            // 
+            // label25
+            // 
+            label25.Anchor = AnchorStyles.None;
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 12F);
+            label25.ForeColor = Color.White;
+            label25.Location = new Point(29, 542);
+            label25.Name = "label25";
+            label25.Size = new Size(47, 21);
+            label25.TabIndex = 66;
+            label25.Text = "0.50 :";
+            // 
+            // label24
+            // 
+            label24.Anchor = AnchorStyles.None;
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 12F);
+            label24.ForeColor = Color.White;
+            label24.Location = new Point(44, 520);
+            label24.Name = "label24";
+            label24.Size = new Size(26, 21);
+            label24.TabIndex = 65;
+            label24.Text = "1 :";
+            // 
+            // label23
+            // 
+            label23.Anchor = AnchorStyles.None;
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 12F);
+            label23.ForeColor = Color.White;
+            label23.Location = new Point(44, 499);
+            label23.Name = "label23";
+            label23.Size = new Size(26, 21);
+            label23.TabIndex = 64;
+            label23.Text = "2 :";
+            // 
+            // label22
+            // 
+            label22.Anchor = AnchorStyles.None;
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 12F);
+            label22.ForeColor = Color.White;
+            label22.Location = new Point(44, 478);
+            label22.Name = "label22";
+            label22.Size = new Size(26, 21);
+            label22.TabIndex = 63;
+            label22.Text = "5 :";
+            // 
+            // label21
+            // 
+            label21.Anchor = AnchorStyles.None;
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 12F);
+            label21.ForeColor = Color.White;
+            label21.Location = new Point(38, 457);
+            label21.Name = "label21";
+            label21.Size = new Size(35, 21);
+            label21.TabIndex = 62;
+            label21.Text = "10 :";
+            // 
+            // label20
+            // 
+            label20.Anchor = AnchorStyles.None;
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 12F);
+            label20.ForeColor = Color.White;
+            label20.Location = new Point(38, 436);
+            label20.Name = "label20";
+            label20.Size = new Size(35, 21);
+            label20.TabIndex = 61;
+            label20.Text = "20 :";
+            // 
+            // label19
+            // 
+            label19.Anchor = AnchorStyles.None;
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 12F);
+            label19.ForeColor = Color.White;
+            label19.Location = new Point(38, 416);
+            label19.Name = "label19";
+            label19.Size = new Size(35, 21);
+            label19.TabIndex = 60;
+            label19.Text = "50 :";
+            // 
+            // label18
+            // 
+            label18.Anchor = AnchorStyles.None;
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 12F);
+            label18.ForeColor = Color.White;
+            label18.Location = new Point(32, 394);
+            label18.Name = "label18";
+            label18.Size = new Size(44, 21);
+            label18.TabIndex = 59;
+            label18.Text = "100 :";
+            // 
+            // label17
+            // 
+            label17.Anchor = AnchorStyles.None;
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 12F);
+            label17.ForeColor = Color.White;
+            label17.Location = new Point(32, 373);
+            label17.Name = "label17";
+            label17.Size = new Size(44, 21);
+            label17.TabIndex = 58;
+            label17.Text = "500 :";
+            // 
+            // label16
+            // 
+            label16.Anchor = AnchorStyles.None;
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 12F);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(21, 353);
+            label16.Name = "label16";
+            label16.Size = new Size(56, 21);
+            label16.TabIndex = 57;
+            label16.Text = "1,000 :";
+            // 
+            // label47
+            // 
+            label47.Anchor = AnchorStyles.None;
+            label47.AutoSize = true;
+            label47.Font = new Font("Segoe UI", 12F);
+            label47.ForeColor = Color.White;
+            label47.Location = new Point(278, 324);
+            label47.Name = "label47";
+            label47.Size = new Size(136, 21);
+            label47.TabIndex = 113;
+            label47.Text = "transactionCount :";
+            // 
+            // txt_transactionCount
+            // 
+            txt_transactionCount.Anchor = AnchorStyles.None;
+            txt_transactionCount.BackColor = Color.Black;
+            txt_transactionCount.BorderStyle = BorderStyle.None;
+            txt_transactionCount.Font = new Font("Segoe UI", 12F);
+            txt_transactionCount.ForeColor = Color.White;
+            txt_transactionCount.Location = new Point(416, 324);
+            txt_transactionCount.Name = "txt_transactionCount";
+            txt_transactionCount.ReadOnly = true;
+            txt_transactionCount.Size = new Size(114, 22);
+            txt_transactionCount.TabIndex = 112;
+            txt_transactionCount.Text = "-";
+            // 
+            // label48
+            // 
+            label48.Anchor = AnchorStyles.None;
+            label48.AutoSize = true;
+            label48.Font = new Font("Segoe UI", 12F);
+            label48.ForeColor = Color.White;
+            label48.Location = new Point(325, 303);
+            label48.Name = "label48";
+            label48.Size = new Size(89, 21);
+            label48.TabIndex = 111;
+            label48.Text = "machineId :";
+            // 
+            // txt_machineId
+            // 
+            txt_machineId.Anchor = AnchorStyles.None;
+            txt_machineId.BackColor = Color.Black;
+            txt_machineId.BorderStyle = BorderStyle.None;
+            txt_machineId.Font = new Font("Segoe UI", 12F);
+            txt_machineId.ForeColor = Color.White;
+            txt_machineId.Location = new Point(416, 302);
+            txt_machineId.Name = "txt_machineId";
+            txt_machineId.ReadOnly = true;
+            txt_machineId.Size = new Size(114, 22);
+            txt_machineId.TabIndex = 110;
+            txt_machineId.Text = "-";
+            // 
+            // label46
+            // 
+            label46.Anchor = AnchorStyles.None;
+            label46.AutoSize = true;
+            label46.Font = new Font("Segoe UI", 12F);
+            label46.ForeColor = Color.White;
+            label46.Location = new Point(314, 70);
+            label46.Name = "label46";
+            label46.Size = new Size(101, 21);
+            label46.TabIndex = 107;
+            label46.Text = "totalReceive :";
+            // 
+            // txt_totalReceive
+            // 
+            txt_totalReceive.Anchor = AnchorStyles.None;
+            txt_totalReceive.BackColor = Color.Black;
+            txt_totalReceive.BorderStyle = BorderStyle.None;
+            txt_totalReceive.Font = new Font("Segoe UI", 12F);
+            txt_totalReceive.ForeColor = Color.White;
+            txt_totalReceive.Location = new Point(417, 69);
+            txt_totalReceive.Name = "txt_totalReceive";
+            txt_totalReceive.ReadOnly = true;
+            txt_totalReceive.Size = new Size(114, 22);
+            txt_totalReceive.TabIndex = 106;
+            txt_totalReceive.Text = "-";
+            // 
+            // label45
+            // 
+            label45.Anchor = AnchorStyles.None;
+            label45.AutoSize = true;
+            label45.Font = new Font("Segoe UI", 12F);
+            label45.ForeColor = Color.White;
+            label45.Location = new Point(304, 29);
+            label45.Name = "label45";
+            label45.Size = new Size(111, 21);
+            label45.TabIndex = 105;
+            label45.Text = "lastEndOfDay :";
+            // 
+            // txt_lastEndOfDay
+            // 
+            txt_lastEndOfDay.Anchor = AnchorStyles.None;
+            txt_lastEndOfDay.BackColor = Color.Black;
+            txt_lastEndOfDay.BorderStyle = BorderStyle.None;
+            txt_lastEndOfDay.Font = new Font("Segoe UI", 12F);
+            txt_lastEndOfDay.ForeColor = Color.White;
+            txt_lastEndOfDay.Location = new Point(417, 26);
+            txt_lastEndOfDay.Name = "txt_lastEndOfDay";
+            txt_lastEndOfDay.ReadOnly = true;
+            txt_lastEndOfDay.Size = new Size(114, 22);
+            txt_lastEndOfDay.TabIndex = 104;
+            txt_lastEndOfDay.Text = "-";
+            // 
+            // label44
+            // 
+            label44.Anchor = AnchorStyles.None;
+            label44.AutoSize = true;
+            label44.Font = new Font("Segoe UI", 12F);
+            label44.ForeColor = Color.White;
+            label44.Location = new Point(315, 261);
+            label44.Name = "label44";
+            label44.Size = new Size(99, 21);
+            label44.TabIndex = 103;
+            label44.Text = "thisRemove :";
+            // 
+            // txt_thisRemove
+            // 
+            txt_thisRemove.Anchor = AnchorStyles.None;
+            txt_thisRemove.BackColor = Color.Black;
+            txt_thisRemove.BorderStyle = BorderStyle.None;
+            txt_thisRemove.Font = new Font("Segoe UI", 12F);
+            txt_thisRemove.ForeColor = Color.White;
+            txt_thisRemove.Location = new Point(416, 261);
+            txt_thisRemove.Name = "txt_thisRemove";
+            txt_thisRemove.ReadOnly = true;
+            txt_thisRemove.Size = new Size(114, 22);
+            txt_thisRemove.TabIndex = 102;
+            txt_thisRemove.Text = "-";
+            // 
+            // label43
+            // 
+            label43.Anchor = AnchorStyles.None;
+            label43.AutoSize = true;
+            label43.Font = new Font("Segoe UI", 12F);
+            label43.ForeColor = Color.White;
+            label43.Location = new Point(309, 240);
+            label43.Name = "label43";
+            label43.Size = new Size(105, 21);
+            label43.TabIndex = 101;
+            label43.Text = "totalRemove :";
+            // 
+            // txt_totalRemove
+            // 
+            txt_totalRemove.Anchor = AnchorStyles.None;
+            txt_totalRemove.BackColor = Color.Black;
+            txt_totalRemove.BorderStyle = BorderStyle.None;
+            txt_totalRemove.Font = new Font("Segoe UI", 12F);
+            txt_totalRemove.ForeColor = Color.White;
+            txt_totalRemove.Location = new Point(416, 239);
+            txt_totalRemove.Name = "txt_totalRemove";
+            txt_totalRemove.ReadOnly = true;
+            txt_totalRemove.Size = new Size(114, 22);
+            txt_totalRemove.TabIndex = 100;
+            txt_totalRemove.Text = "-";
+            // 
+            // label42
+            // 
+            label42.Anchor = AnchorStyles.None;
+            label42.AutoSize = true;
+            label42.Font = new Font("Segoe UI", 12F);
+            label42.ForeColor = Color.White;
+            label42.Location = new Point(282, 220);
+            label42.Name = "label42";
+            label42.Size = new Size(133, 21);
+            label42.TabIndex = 99;
+            label42.Text = "totalExcDispense :";
+            // 
+            // txt_totalExchangeDispense
+            // 
+            txt_totalExchangeDispense.Anchor = AnchorStyles.None;
+            txt_totalExchangeDispense.BackColor = Color.Black;
+            txt_totalExchangeDispense.BorderStyle = BorderStyle.None;
+            txt_totalExchangeDispense.Font = new Font("Segoe UI", 12F);
+            txt_totalExchangeDispense.ForeColor = Color.White;
+            txt_totalExchangeDispense.Location = new Point(417, 220);
+            txt_totalExchangeDispense.Name = "txt_totalExchangeDispense";
+            txt_totalExchangeDispense.ReadOnly = true;
+            txt_totalExchangeDispense.Size = new Size(114, 22);
+            txt_totalExchangeDispense.TabIndex = 98;
+            txt_totalExchangeDispense.Text = "-";
+            // 
+            // label41
+            // 
+            label41.Anchor = AnchorStyles.None;
+            label41.AutoSize = true;
+            label41.Font = new Font("Segoe UI", 12F);
+            label41.ForeColor = Color.White;
+            label41.Location = new Point(315, 198);
+            label41.Name = "label41";
+            label41.Size = new Size(99, 21);
+            label41.TabIndex = 97;
+            label41.Text = "totalExcSale :";
+            // 
+            // txt_totalExchangeSale
+            // 
+            txt_totalExchangeSale.Anchor = AnchorStyles.None;
+            txt_totalExchangeSale.BackColor = Color.Black;
+            txt_totalExchangeSale.BorderStyle = BorderStyle.None;
+            txt_totalExchangeSale.Font = new Font("Segoe UI", 12F);
+            txt_totalExchangeSale.ForeColor = Color.White;
+            txt_totalExchangeSale.Location = new Point(416, 198);
+            txt_totalExchangeSale.Name = "txt_totalExchangeSale";
+            txt_totalExchangeSale.ReadOnly = true;
+            txt_totalExchangeSale.Size = new Size(114, 22);
+            txt_totalExchangeSale.TabIndex = 96;
+            txt_totalExchangeSale.Text = "-";
+            // 
+            // label40
+            // 
+            label40.Anchor = AnchorStyles.None;
+            label40.AutoSize = true;
+            label40.Font = new Font("Segoe UI", 12F);
+            label40.ForeColor = Color.White;
+            label40.Location = new Point(260, 176);
+            label40.Name = "label40";
+            label40.Size = new Size(154, 21);
+            label40.TabIndex = 95;
+            label40.Text = "totalChangeDeposit :";
+            // 
+            // txt_totalChangeDeposit
+            // 
+            txt_totalChangeDeposit.Anchor = AnchorStyles.None;
+            txt_totalChangeDeposit.BackColor = Color.Black;
+            txt_totalChangeDeposit.BorderStyle = BorderStyle.None;
+            txt_totalChangeDeposit.Font = new Font("Segoe UI", 12F);
+            txt_totalChangeDeposit.ForeColor = Color.White;
+            txt_totalChangeDeposit.Location = new Point(416, 176);
+            txt_totalChangeDeposit.Name = "txt_totalChangeDeposit";
+            txt_totalChangeDeposit.ReadOnly = true;
+            txt_totalChangeDeposit.Size = new Size(114, 22);
+            txt_totalChangeDeposit.TabIndex = 94;
+            txt_totalChangeDeposit.Text = "-";
+            // 
+            // label39
+            // 
+            label39.Anchor = AnchorStyles.None;
+            label39.AutoSize = true;
+            label39.Font = new Font("Segoe UI", 12F);
+            label39.ForeColor = Color.White;
+            label39.Location = new Point(250, 155);
+            label39.Name = "label39";
+            label39.Size = new Size(164, 21);
+            label39.TabIndex = 93;
+            label39.Text = "totalChangeDispense :";
+            // 
+            // txt_totalChangeDispense
+            // 
+            txt_totalChangeDispense.Anchor = AnchorStyles.None;
+            txt_totalChangeDispense.BackColor = Color.Black;
+            txt_totalChangeDispense.BorderStyle = BorderStyle.None;
+            txt_totalChangeDispense.Font = new Font("Segoe UI", 12F);
+            txt_totalChangeDispense.ForeColor = Color.White;
+            txt_totalChangeDispense.Location = new Point(416, 155);
+            txt_totalChangeDispense.Name = "txt_totalChangeDispense";
+            txt_totalChangeDispense.ReadOnly = true;
+            txt_totalChangeDispense.Size = new Size(114, 22);
+            txt_totalChangeDispense.TabIndex = 92;
+            txt_totalChangeDispense.Text = "-";
+            // 
+            // label38
+            // 
+            label38.Anchor = AnchorStyles.None;
+            label38.AutoSize = true;
+            label38.Font = new Font("Segoe UI", 12F);
+            label38.ForeColor = Color.White;
+            label38.Location = new Point(333, 7);
+            label38.Name = "label38";
+            label38.Size = new Size(82, 21);
+            label38.TabIndex = 91;
+            label38.Text = "printType :";
+            // 
+            // textBox2
+            // 
+            textBox2.Anchor = AnchorStyles.None;
+            textBox2.BackColor = Color.Black;
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Font = new Font("Segoe UI", 12F);
+            textBox2.ForeColor = Color.White;
+            textBox2.Location = new Point(417, 6);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(114, 22);
+            textBox2.TabIndex = 90;
+            textBox2.Text = "-";
             // 
             // label32
             // 
@@ -1147,7 +1700,7 @@
             label32.AutoSize = true;
             label32.Font = new Font("Segoe UI", 12F);
             label32.ForeColor = Color.White;
-            label32.Location = new Point(66, 431);
+            label32.Location = new Point(331, 114);
             label32.Name = "label32";
             label32.Size = new Size(83, 21);
             label32.TabIndex = 79;
@@ -1160,7 +1713,7 @@
             txt_totalRefill.BorderStyle = BorderStyle.None;
             txt_totalRefill.Font = new Font("Segoe UI", 12F);
             txt_totalRefill.ForeColor = Color.White;
-            txt_totalRefill.Location = new Point(149, 430);
+            txt_totalRefill.Location = new Point(416, 113);
             txt_totalRefill.Name = "txt_totalRefill";
             txt_totalRefill.ReadOnly = true;
             txt_totalRefill.Size = new Size(114, 22);
@@ -1173,11 +1726,12 @@
             label31.AutoSize = true;
             label31.Font = new Font("Segoe UI", 12F);
             label31.ForeColor = Color.White;
-            label31.Location = new Point(77, 403);
+            label31.Location = new Point(340, 387);
             label31.Name = "label31";
             label31.Size = new Size(72, 21);
             label31.TabIndex = 77;
             label31.Text = "totalFee :";
+            label31.Visible = false;
             // 
             // txt_totalFee
             // 
@@ -1186,12 +1740,13 @@
             txt_totalFee.BorderStyle = BorderStyle.None;
             txt_totalFee.Font = new Font("Segoe UI", 12F);
             txt_totalFee.ForeColor = Color.White;
-            txt_totalFee.Location = new Point(149, 402);
+            txt_totalFee.Location = new Point(414, 386);
             txt_totalFee.Name = "txt_totalFee";
             txt_totalFee.ReadOnly = true;
             txt_totalFee.Size = new Size(114, 22);
             txt_totalFee.TabIndex = 76;
             txt_totalFee.Text = "-";
+            txt_totalFee.Visible = false;
             // 
             // label30
             // 
@@ -1199,7 +1754,7 @@
             label30.AutoSize = true;
             label30.Font = new Font("Segoe UI", 12F);
             label30.ForeColor = Color.White;
-            label30.Location = new Point(72, 375);
+            label30.Location = new Point(338, 48);
             label30.Name = "label30";
             label30.Size = new Size(77, 21);
             label30.TabIndex = 75;
@@ -1212,7 +1767,7 @@
             txt_totalSale.BorderStyle = BorderStyle.None;
             txt_totalSale.Font = new Font("Segoe UI", 12F);
             txt_totalSale.ForeColor = Color.White;
-            txt_totalSale.Location = new Point(149, 374);
+            txt_totalSale.Location = new Point(417, 47);
             txt_totalSale.Name = "txt_totalSale";
             txt_totalSale.ReadOnly = true;
             txt_totalSale.Size = new Size(114, 22);
@@ -1225,7 +1780,7 @@
             label29.AutoSize = true;
             label29.Font = new Font("Segoe UI", 12F);
             label29.ForeColor = Color.White;
-            label29.Location = new Point(67, 344);
+            label29.Location = new Point(57, 300);
             label29.Name = "label29";
             label29.Size = new Size(82, 21);
             label29.TabIndex = 73;
@@ -1238,7 +1793,7 @@
             txt_customer.BorderStyle = BorderStyle.None;
             txt_customer.Font = new Font("Segoe UI", 12F);
             txt_customer.ForeColor = Color.White;
-            txt_customer.Location = new Point(149, 343);
+            txt_customer.Location = new Point(139, 299);
             txt_customer.Name = "txt_customer";
             txt_customer.ReadOnly = true;
             txt_customer.Size = new Size(114, 22);
@@ -1251,7 +1806,7 @@
             label28.AutoSize = true;
             label28.Font = new Font("Segoe UI", 12F);
             label28.ForeColor = Color.White;
-            label28.Location = new Point(63, 323);
+            label28.Location = new Point(53, 279);
             label28.Name = "label28";
             label28.Size = new Size(86, 21);
             label28.TabIndex = 71;
@@ -1264,7 +1819,7 @@
             txt_username.BorderStyle = BorderStyle.None;
             txt_username.Font = new Font("Segoe UI", 12F);
             txt_username.ForeColor = Color.White;
-            txt_username.Location = new Point(149, 323);
+            txt_username.Location = new Point(139, 279);
             txt_username.Name = "txt_username";
             txt_username.ReadOnly = true;
             txt_username.Size = new Size(114, 22);
@@ -1277,7 +1832,7 @@
             label27.AutoSize = true;
             label27.Font = new Font("Segoe UI", 12F);
             label27.ForeColor = Color.White;
-            label27.Location = new Point(46, 302);
+            label27.Location = new Point(36, 258);
             label27.Name = "label27";
             label27.Size = new Size(103, 21);
             label27.TabIndex = 69;
@@ -1290,152 +1845,169 @@
             txt_isCancelSale.BorderStyle = BorderStyle.None;
             txt_isCancelSale.Font = new Font("Segoe UI", 12F);
             txt_isCancelSale.ForeColor = Color.White;
-            txt_isCancelSale.Location = new Point(149, 302);
+            txt_isCancelSale.Location = new Point(139, 258);
             txt_isCancelSale.Name = "txt_isCancelSale";
             txt_isCancelSale.ReadOnly = true;
             txt_isCancelSale.Size = new Size(114, 22);
             txt_isCancelSale.TabIndex = 68;
             txt_isCancelSale.Text = "-";
             // 
-            // label26
+            // label33
             // 
-            label26.Anchor = AnchorStyles.None;
-            label26.AutoSize = true;
-            label26.Font = new Font("Segoe UI", 12F);
-            label26.ForeColor = Color.White;
-            label26.Location = new Point(305, 317);
-            label26.Name = "label26";
-            label26.Size = new Size(47, 21);
-            label26.TabIndex = 67;
-            label26.Text = "0.25 :";
+            label33.Anchor = AnchorStyles.None;
+            label33.AutoSize = true;
+            label33.Font = new Font("Segoe UI", 12F);
+            label33.ForeColor = Color.White;
+            label33.Location = new Point(314, 92);
+            label33.Name = "label33";
+            label33.Size = new Size(101, 21);
+            label33.TabIndex = 81;
+            label33.Text = "totalDeposit :";
             // 
-            // label25
+            // txt_totalDeposit
             // 
-            label25.Anchor = AnchorStyles.None;
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 12F);
-            label25.ForeColor = Color.White;
-            label25.Location = new Point(305, 296);
-            label25.Name = "label25";
-            label25.Size = new Size(47, 21);
-            label25.TabIndex = 66;
-            label25.Text = "0.50 :";
+            txt_totalDeposit.Anchor = AnchorStyles.None;
+            txt_totalDeposit.BackColor = Color.Black;
+            txt_totalDeposit.BorderStyle = BorderStyle.None;
+            txt_totalDeposit.Font = new Font("Segoe UI", 12F);
+            txt_totalDeposit.ForeColor = Color.White;
+            txt_totalDeposit.Location = new Point(417, 91);
+            txt_totalDeposit.Name = "txt_totalDeposit";
+            txt_totalDeposit.ReadOnly = true;
+            txt_totalDeposit.Size = new Size(114, 22);
+            txt_totalDeposit.TabIndex = 80;
+            txt_totalDeposit.Text = "-";
             // 
-            // label24
+            // label34
             // 
-            label24.Anchor = AnchorStyles.None;
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 12F);
-            label24.ForeColor = Color.White;
-            label24.Location = new Point(320, 274);
-            label24.Name = "label24";
-            label24.Size = new Size(26, 21);
-            label24.TabIndex = 65;
-            label24.Text = "1 :";
+            label34.Anchor = AnchorStyles.None;
+            label34.AutoSize = true;
+            label34.Font = new Font("Segoe UI", 12F);
+            label34.ForeColor = Color.White;
+            label34.Location = new Point(303, 134);
+            label34.Name = "label34";
+            label34.Size = new Size(111, 21);
+            label34.TabIndex = 83;
+            label34.Text = "totalDispense :";
             // 
-            // label23
+            // txt_totalDispense
             // 
-            label23.Anchor = AnchorStyles.None;
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 12F);
-            label23.ForeColor = Color.White;
-            label23.Location = new Point(320, 253);
-            label23.Name = "label23";
-            label23.Size = new Size(26, 21);
-            label23.TabIndex = 64;
-            label23.Text = "2 :";
+            txt_totalDispense.Anchor = AnchorStyles.None;
+            txt_totalDispense.BackColor = Color.Black;
+            txt_totalDispense.BorderStyle = BorderStyle.None;
+            txt_totalDispense.Font = new Font("Segoe UI", 12F);
+            txt_totalDispense.ForeColor = Color.White;
+            txt_totalDispense.Location = new Point(416, 134);
+            txt_totalDispense.Name = "txt_totalDispense";
+            txt_totalDispense.ReadOnly = true;
+            txt_totalDispense.Size = new Size(114, 22);
+            txt_totalDispense.TabIndex = 82;
+            txt_totalDispense.Text = "-";
             // 
-            // label22
+            // label35
             // 
-            label22.Anchor = AnchorStyles.None;
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 12F);
-            label22.ForeColor = Color.White;
-            label22.Location = new Point(320, 232);
-            label22.Name = "label22";
-            label22.Size = new Size(26, 21);
-            label22.TabIndex = 63;
-            label22.Text = "5 :";
+            label35.Anchor = AnchorStyles.None;
+            label35.AutoSize = true;
+            label35.Font = new Font("Segoe UI", 12F);
+            label35.ForeColor = Color.White;
+            label35.Location = new Point(313, 345);
+            label35.Name = "label35";
+            label35.Size = new Size(101, 21);
+            label35.TabIndex = 85;
+            label35.Text = "totalRelease :";
+            label35.Visible = false;
             // 
-            // label21
+            // txt_totalRelease
             // 
-            label21.Anchor = AnchorStyles.None;
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI", 12F);
-            label21.ForeColor = Color.White;
-            label21.Location = new Point(314, 211);
-            label21.Name = "label21";
-            label21.Size = new Size(35, 21);
-            label21.TabIndex = 62;
-            label21.Text = "10 :";
+            txt_totalRelease.Anchor = AnchorStyles.None;
+            txt_totalRelease.BackColor = Color.Black;
+            txt_totalRelease.BorderStyle = BorderStyle.None;
+            txt_totalRelease.Font = new Font("Segoe UI", 12F);
+            txt_totalRelease.ForeColor = Color.White;
+            txt_totalRelease.Location = new Point(416, 345);
+            txt_totalRelease.Name = "txt_totalRelease";
+            txt_totalRelease.ReadOnly = true;
+            txt_totalRelease.Size = new Size(114, 22);
+            txt_totalRelease.TabIndex = 84;
+            txt_totalRelease.Text = "-";
+            txt_totalRelease.Visible = false;
             // 
-            // label20
+            // label37
             // 
-            label20.Anchor = AnchorStyles.None;
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI", 12F);
-            label20.ForeColor = Color.White;
-            label20.Location = new Point(314, 190);
-            label20.Name = "label20";
-            label20.Size = new Size(35, 21);
-            label20.TabIndex = 61;
-            label20.Text = "20 :";
+            label37.Anchor = AnchorStyles.None;
+            label37.AutoSize = true;
+            label37.Font = new Font("Segoe UI", 12F);
+            label37.ForeColor = Color.White;
+            label37.Location = new Point(319, 366);
+            label37.Name = "label37";
+            label37.Size = new Size(95, 21);
+            label37.TabIndex = 87;
+            label37.Text = "thisRelease :";
+            label37.Visible = false;
             // 
-            // label19
+            // txt_thisRelease
             // 
-            label19.Anchor = AnchorStyles.None;
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 12F);
-            label19.ForeColor = Color.White;
-            label19.Location = new Point(314, 170);
-            label19.Name = "label19";
-            label19.Size = new Size(35, 21);
-            label19.TabIndex = 60;
-            label19.Text = "50 :";
+            txt_thisRelease.Anchor = AnchorStyles.None;
+            txt_thisRelease.BackColor = Color.Black;
+            txt_thisRelease.BorderStyle = BorderStyle.None;
+            txt_thisRelease.Font = new Font("Segoe UI", 12F);
+            txt_thisRelease.ForeColor = Color.White;
+            txt_thisRelease.Location = new Point(416, 366);
+            txt_thisRelease.Name = "txt_thisRelease";
+            txt_thisRelease.ReadOnly = true;
+            txt_thisRelease.Size = new Size(114, 22);
+            txt_thisRelease.TabIndex = 86;
+            txt_thisRelease.Text = "-";
+            txt_thisRelease.Visible = false;
             // 
-            // label18
+            // label36
             // 
-            label18.Anchor = AnchorStyles.None;
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 12F);
-            label18.ForeColor = Color.White;
-            label18.Location = new Point(308, 148);
-            label18.Name = "label18";
-            label18.Size = new Size(44, 21);
-            label18.TabIndex = 59;
-            label18.Text = "100 :";
+            label36.Anchor = AnchorStyles.None;
+            label36.AutoSize = true;
+            label36.Font = new Font("Segoe UI", 12F);
+            label36.ForeColor = Color.White;
+            label36.Location = new Point(297, 282);
+            label36.Name = "label36";
+            label36.Size = new Size(117, 21);
+            label36.TabIndex = 89;
+            label36.Text = "thisRemaining :";
             // 
-            // label17
+            // txt_thisRemaining
             // 
-            label17.Anchor = AnchorStyles.None;
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 12F);
-            label17.ForeColor = Color.White;
-            label17.Location = new Point(308, 127);
-            label17.Name = "label17";
-            label17.Size = new Size(44, 21);
-            label17.TabIndex = 58;
-            label17.Text = "500 :";
+            txt_thisRemaining.Anchor = AnchorStyles.None;
+            txt_thisRemaining.BackColor = Color.Black;
+            txt_thisRemaining.BorderStyle = BorderStyle.None;
+            txt_thisRemaining.Font = new Font("Segoe UI", 12F);
+            txt_thisRemaining.ForeColor = Color.White;
+            txt_thisRemaining.Location = new Point(416, 282);
+            txt_thisRemaining.Name = "txt_thisRemaining";
+            txt_thisRemaining.ReadOnly = true;
+            txt_thisRemaining.Size = new Size(114, 22);
+            txt_thisRemaining.TabIndex = 88;
+            txt_thisRemaining.Text = "-";
             // 
-            // label16
+            // cbNamePrinter
             // 
-            label16.Anchor = AnchorStyles.None;
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 12F);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(297, 107);
-            label16.Name = "label16";
-            label16.Size = new Size(56, 21);
-            label16.TabIndex = 57;
-            label16.Text = "1,000 :";
+            cbNamePrinter.Anchor = AnchorStyles.None;
+            cbNamePrinter.BackColor = Color.FromArgb(39, 39, 39);
+            cbNamePrinter.Cursor = Cursors.Hand;
+            cbNamePrinter.Font = new Font("Segoe UI", 12F);
+            cbNamePrinter.ForeColor = Color.White;
+            cbNamePrinter.FormattingEnabled = true;
+            cbNamePrinter.Location = new Point(804, 9);
+            cbNamePrinter.Name = "cbNamePrinter";
+            cbNamePrinter.Size = new Size(277, 29);
+            cbNamePrinter.TabIndex = 58;
+            cbNamePrinter.Text = "asdasdasd";
+            cbNamePrinter.Visible = false;
             // 
             // PTCreatus
             // 
             PTCreatus.Anchor = AnchorStyles.None;
             PTCreatus.BackColor = Color.Transparent;
-            PTCreatus.Location = new Point(360, 452);
+            PTCreatus.Location = new Point(10, 4);
             PTCreatus.Name = "PTCreatus";
-            PTCreatus.Size = new Size(125, 125);
+            PTCreatus.Size = new Size(38, 38);
             PTCreatus.SizeMode = PictureBoxSizeMode.Zoom;
             PTCreatus.TabIndex = 56;
             PTCreatus.TabStop = false;
@@ -1468,8 +2040,11 @@
             BackColor = Color.FromArgb(39, 39, 39);
             ClientSize = new Size(1345, 671);
             Controls.Add(panel1);
+            Controls.Add(PTCreatus);
             Controls.Add(textBox1);
             Controls.Add(label1);
+            Controls.Add(bt_set);
+            Controls.Add(cbNamePrinter);
             Controls.Add(txtstatus);
             Controls.Add(bt_detail);
             Controls.Add(bt_exit);
@@ -1587,5 +2162,41 @@
         private Label label30;
         private TextBox txt_totalSale;
         private ComboBox cbNamePrinter;
+        private Label label38;
+        private TextBox textBox2;
+        private Label label44;
+        private TextBox txt_thisRemove;
+        private Label label43;
+        private TextBox txt_totalRemove;
+        private Label label42;
+        private TextBox txt_totalExchangeDispense;
+        private Label label41;
+        private TextBox txt_totalExchangeSale;
+        private Label label40;
+        private TextBox txt_totalChangeDeposit;
+        private Label label39;
+        private TextBox txt_totalChangeDispense;
+        private Label label45;
+        private TextBox txt_lastEndOfDay;
+        private Label label46;
+        private TextBox txt_totalReceive;
+        private Label label47;
+        private TextBox txt_transactionCount;
+        private Label label48;
+        private TextBox txt_machineId;
+        private Label label49;
+        private TextBox txtCol025;
+        private TextBox txtCol050;
+        private TextBox txtCol1;
+        private TextBox txtCol2;
+        private TextBox txtCol5;
+        private TextBox txtCol10;
+        private TextBox txtCol20;
+        private TextBox txtCol50;
+        private TextBox txtCol100;
+        private TextBox txtCol500;
+        private TextBox txtCol1000;
+        private Label label50;
+        private TextBox txt_remarkes;
     }
 }

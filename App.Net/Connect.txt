@@ -1,0 +1,23 @@
+printCompanyName;Your Company
+printBranchName;Main Branch
+printAddress1;123 Example Street
+printAddress2;
+printAddress3;
+printTaxId;0000000000000
+printMachineName;KIOSK-01
+printBranchCode;BR001
+printMargin;90
+printQueueNo;90
+imageSlip;HeaderImage
+DemoSetting;false
+portURL;8080
+hostURL;+
+printerName;Microsoft Print to PDF
+salePrint;true
+refillPrint;true
+dispensePrint;true
+dispositPrint;true
+endofdayPrint;true
+removePrint;true
+exchangeSalePrint;true
+exchangeDispPrint;true

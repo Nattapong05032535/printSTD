@@ -12,6 +12,8 @@ namespace App.Net.Configuration
 
         public static string CurrentTime => DateTime.Now.ToShortTimeString();
 
+        public static string hostURL { get; set; } = "localhost";
+
         public static string portURL { get; set; } = "8000";
 
         public static bool DemoSetting { get; set; } = false;
@@ -55,5 +57,15 @@ namespace App.Net.Configuration
         public static bool exchangeSalePrint { get; set; } = true;
 
         public static bool exchangeDispPrint { get; set; } = true;
+
+        public static bool cashCollectPrint { get; set; } = true;
+
+        public static bool changeDepositPrint { get; set; } = true;
+
+        public static bool changeDispensePrint { get; set; } = true;
+
+        public static bool tipExchangePrint { get; set; } = true;
+
+        public static bool receivePrint { get; set; } = true;
     }
 }

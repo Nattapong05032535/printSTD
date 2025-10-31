@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using App.Net.Configuration;
-using App.Net.Controller;
 using App.Net.formatReceipt;
 using App.Net.Model;
 
@@ -16,88 +15,58 @@ namespace App.Net
 
         private Point lastCursor;
 
-        private HttpListener _listener;
-
-        private Thread? _listenerThread;
-
         private NotifyIcon trayIcon;
 
         private ContextMenuStrip trayMenu;
-
-        private ConcretePrintController _printController;
-
-        private CancellationTokenSource _cancellationTokenSource;
 
         public Server_API_Print()
         {
             InitializeComponent();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            _listener = new HttpListener();
             trayIcon = new NotifyIcon();
             trayMenu = new ContextMenuStrip();
 
-            _printController = new ConcretePrintController(this);
-
             InitializeListener();
-
-            Task.Run(() => ListenForRequests(_cancellationTokenSource.Token)).ContinueWith(t =>
-            {
-                // จัดการข้อผิดพลาดจากงาน background
-                if (t.Exception != null)
-                {
-                    Log($"Error: {t.Exception.Message}");
-                }
-            }, TaskContinuationOptions.OnlyOnFaulted);
         }
 
         private void InitializeListener()
         {
             try
             {
-                LoadConfig();
-
-                LoadPrintersToComboBox();
-
-                if (_listener == null)
+                if(LoadConfig())
                 {
-                    _listener = new HttpListener();
-                }
+                    string port = Setting.portURL;
 
-                if (_listener.IsListening)
-                {
-                    _listener.Stop();
-                    _listener.Close();
-                    AppendStatus("Stopped the existing listener before restarting.");
-                }
+                    if (IsPortInUse(port))
+                    {
+                        AppendStatus($"The port {port} is already in use. Please choose another port.");
+                        MessageBox.Show($"The port {port} is already in use. Please choose another port.",
+                                         "เธกเธตเธเธฒเธฃเน€เธเธดเธ”เนเธเนเธเธฒเธเธเธญเธฃเนเธ•เธซเธฃเธทเธญเนเธเธฃเนเธเธฃเธกเนเธฅเนเธง",
+                                         MessageBoxButtons.OK,
+                                         MessageBoxIcon.Error);
 
-                string port = Setting.portURL;
-                string urlPrint = $"http://localhost:{port}/api/print/";
-                string urlReport = $"http://localhost:{port}/api/report/";
+                        Environment.Exit(0);
+                        return;
+                    }
+                    else
+                    {
+                        LoadPrintersToComboBox();
 
-                _listener.Prefixes.Add(urlPrint);
-                _listener.Prefixes.Add(urlReport);
+                        string host = string.IsNullOrWhiteSpace(Setting.hostURL) ? "localhost" : Setting.hostURL.Trim();
 
-                if (IsPortInUse(port))
-                {
-                    AppendStatus($"The port {port} is already in use. Please choose another port.");
-                    MessageBox.Show($"The port {port} is already in use. Please choose another port.",
-                                     "มีการเปิดใช้งานพอร์ตหรือโปรแกรมแล้ว",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Error);
+                        AppendStatus($"API Print CCWEB configured:");
+                        AppendStatus($" - Host: {host}");
+                        AppendStatus($" - Port: {port}");
+                        AppendStatus($" - Print API: http://{host}:{port}/api/print");
+                        AppendStatus($" - Report API: http://{host}:{port}/api/report");
+                    }
+                }    
 
-                    Environment.Exit(0);
-                    return;
-                }
-
-                _listener.Start();
-                AppendStatus($"Start API Print CCWEB:");
-                AppendStatus($" - {urlPrint}");
-                AppendStatus($" - {urlReport}");
+               
             }
             catch (Exception ex)
             {
-                AppendStatus($"Failed to start the API Print CCWEB service at http://localhost:{Setting.portURL}/api/print/");
+                AppendStatus($"Failed to initialize configuration: {ex.Message}");
                 string filePath = Application.StartupPath + @"\errorLog.txt";
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
@@ -110,35 +79,16 @@ namespace App.Net
 
         private void LoadPrintersToComboBox()
         {
-            // ลบรายการที่มีอยู่ใน ComboBox ออกก่อน
             cbNamePrinter.Items.Clear();
 
-            // เพิ่มเครื่องพิมพ์ทั้งหมดที่ติดตั้งในเครื่อง
             foreach (string printer in PrinterSettings.InstalledPrinters)
             {
                 cbNamePrinter.Items.Add(printer);
             }
 
-            // ตรวจสอบว่า ComboBox มีรายการแล้วหรือยัง
             if (cbNamePrinter.Items.Count > 0)
             {
-                // เลือกเครื่องพิมพ์แรกโดยอัตโนมัติ
                 cbNamePrinter.SelectedIndex = 0;
-            }
-        }
-
-        private bool IsPortInUse(string port)
-        {
-            try
-            {
-                var tcpListener = new TcpListener(IPAddress.Loopback, int.Parse(port));
-                tcpListener.Start();
-                tcpListener.Stop();
-                return false;
-            }
-            catch (SocketException)
-            {
-                return true;
             }
         }
 
@@ -166,11 +116,13 @@ namespace App.Net
                     txt_showDenom.Text = DetailDenom.ShowDenom.ToString();
                     txt_isCancelSale.Text = DetailDenom.isCancelSale.ToString();
                     txt_username.Text = DetailDenom.username;
+                    txt_remarkes.Text = DetailDenom.remarkes;
 
                     // display detail Denom Cashin
                     txtIn1000.Text = DetailDenom.Cashin1000.ToString();
                     txtIn500.Text = DetailDenom.Cashin500.ToString();
                     txtIn100.Text = DetailDenom.Cashin100.ToString();
+                    txtIn50.Text = DetailDenom.Cashin50.ToString();
                     txtIn20.Text = DetailDenom.Cashin20.ToString();
                     txtIn10.Text = DetailDenom.Cashin10.ToString();
                     txtIn5.Text = DetailDenom.Cashin5.ToString();
@@ -192,99 +144,81 @@ namespace App.Net
                     txtOut050.Text = DetailDenom.CashOut050.ToString();
                     txtOut025.Text = DetailDenom.CashOut025.ToString();
 
+                    // display detail Denom Cashout
+                    txtCol1000.Text = DetailDenom.CashCollect1000.ToString();
+                    txtCol500.Text = DetailDenom.CashCollect500.ToString();
+                    txtCol100.Text = DetailDenom.CashCollect100.ToString();
+                    txtCol50.Text = DetailDenom.CashCollect50.ToString();
+                    txtCol20.Text = DetailDenom.CashCollect20.ToString();
+                    txtCol10.Text = DetailDenom.CashCollect10.ToString();
+                    txtCol5.Text = DetailDenom.CashCollect5.ToString();
+                    txtCol2.Text = DetailDenom.CashCollect2.ToString();
+                    txtCol1.Text = DetailDenom.CashCollect1.ToString();
+                    txtCol050.Text = DetailDenom.CashCollect050.ToString();
+                    txtCol025.Text = DetailDenom.CashCollect025.ToString();
+
                     if (DetailDenom.printType == "sale" && DetailDenom.isCancelSale == true)
                     {
                         DetailDenom.printType = "Cancle Sale";
+                        DetailDenom.printTypeTHB = "เธขเธเน€เธฅเธดเธเธเธฒเธฃเธเธฒเธข";
                         txt_printType.Text = DetailDenom.printType;
                     }
 
                     if (Setting.DemoSetting && !string.IsNullOrEmpty(DetailDenom.txDate))
                     {
-                        // อ่านชื่อเครื่องพิมพ์จาก DetailDenom.printer
+                        // DetailDenom.printer
                         string printer = Setting.printer;
 
-                        // สร้าง PrintDocument และกำหนด PrinterSettings
+                        // PrintDocument PrinterSettings
                         PrintDocument printDoc = new PrintDocument();
                         printDoc.PrinterSettings.PrinterName = printer;
 
-                        // ตรวจสอบว่าเครื่องพิมพ์ที่เลือกมีอยู่จริง
                         if (!printDoc.PrinterSettings.IsValid)
                         {
-                            txtstatus.Text += "เครื่องพิมพ์ที่เลือกไม่ถูกต้อง หรือไม่สามารถเข้าถึงได้." + Environment.NewLine;
-                            return;  // ออกจากฟังก์ชันหากเครื่องพิมพ์ไม่สามารถใช้งานได้
+                            txtstatus.Text += "PrintDocument PrinterSettings Fail" + Environment.NewLine;
+                            return;
                         }
                         else
                         {
-                            if (DetailDenom.printType == "sale" && Setting.salePrint == true)
+                            var printSettings = new Dictionary<string, bool>
                             {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "refill" && Setting.refillPrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "dispense" && Setting.dispensePrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "deposit" && Setting.dispositPrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "endofday" && Setting.endofdayPrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "remove-casstte" && Setting.removePrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "exchange-sale" && Setting.exchangeSalePrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
-                            
-                            else if (DetailDenom.printType == "exchange-disp" && Setting.exchangeDispPrint == true)
-                            {
-                                // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
-                                printDoc.Print();  // ส่งคำสั่งพิมพ์
-                            }
+                                { "sale", Setting.salePrint },
+                                { "refill", Setting.refillPrint },
+                                { "dispense", Setting.dispensePrint },
+                                { "deposit", Setting.dispositPrint },
+                                { "endofday", Setting.endofdayPrint },
+                                { "remove-cassette", Setting.removePrint },
+                                { "exchange-sale", Setting.exchangeSalePrint },
+                                { "exchange-disp", Setting.exchangeDispPrint },
+                                { "cash-collect", Setting.cashCollectPrint },
+                                { "change-deposit", Setting.changeDepositPrint },
+                                { "change-dispense", Setting.changeDispensePrint },
+                                { "tip-exchange", Setting.tipExchangePrint },
+                                { "receive", Setting.receivePrint }
+                            };
 
+                            if (printSettings.TryGetValue(DetailDenom.printType, out bool canPrint) && canPrint)
+                            {
+                                printDoc.PrintPage += new PrintPageEventHandler(ReciveDocument_PrintPage);
+                                printDoc.Print();
+                            }
                             else
                             {
                                 txtstatus.Text += status + data + Environment.NewLine;
+                                return;
                             }
                         }
                     }
                     else
                     { 
                         txtstatus.Text += status + data + Environment.NewLine;
+                        return;
                     }
                 }
                 else
                 {
                     txtstatus.Text += status + data + Environment.NewLine;
+                    return;
                 }
             }
             catch (Exception ex)
@@ -299,60 +233,63 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[UpdateFields(RequestModel data)]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "UpdateFields(RequestModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "UpdateFields(RequestModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void HandleFrontendAndPrint(RequestReportModel data, string status)
+        public void HandleFrontendAndPrint(EndOfDayReportModel data, string status)
         {
             try
             {
-                // Display UI             
+                // Display UI
                 if (status == "Success")
                 {
-                    // display detail object
-                    txt_txDate.Text = DetailDenom.date;
+                    txtstatus.Text += "Report : "+status + " : " + data.ReqId + Environment.NewLine;
+                    txt_printType.Text = DetailDenom.printType;
+                    txt_txDate.Text = DetailDenom.transactionDate;
+                    txt_lastEndOfDay.Text = DetailDenom.lastEndOfDay;
                     txt_totalSale.Text = DetailDenom.totalSale;
-                    txt_totalFee.Text = DetailDenom.totalFee;
+                    txt_totalReceive.Text = DetailDenom.totalReceive;
                     txt_totalRefill.Text = DetailDenom.totalRefill;
                     txt_totalDeposit.Text = DetailDenom.totalDeposit;
                     txt_totalDispense.Text = DetailDenom.totalDispense;
-                    txt_totalRelease.Text = DetailDenom.totalRelease;
-                    txt_thisRelease.Text = DetailDenom.thisRelease;
+                    txt_totalChangeDispense.Text = DetailDenom.totalChangeDispense;
+                    txt_totalChangeDeposit.Text = DetailDenom.totalChangeDeposit;
+                    txt_totalExchangeSale.Text = DetailDenom.totalExchangeSale;
+                    txt_totalExchangeDispense.Text = DetailDenom.totalExchangeDispense;
+                    txt_totalRemove.Text = DetailDenom.totalRemove;
+                    txt_thisRemove.Text = DetailDenom.thisRemove;
                     txt_thisRemaining.Text = DetailDenom.thisRemaining;
-
-                    //if (Setting.DemoSetting)
-                    //{
-                    //    ReportDocument1.PrintController = new StandardPrintController();
-                    //    ReportDocument1.Print();
-                    //}
-
+                    txt_reqNo.Text = DetailDenom.reqId;
+                    txt_machineId.Text = DetailDenom.machineId;
+                    txt_transactionCount.Text = DetailDenom.transactionCount.ToString();
+                    
                     if (Setting.DemoSetting)
                     {
-                        // อ่านชื่อเครื่องพิมพ์จาก DetailDenom.printer
                         string printer = Setting.printer;
 
-                        // สร้าง PrintDocument และกำหนด PrinterSettings
                         PrintDocument printDoc = new PrintDocument();
                         printDoc.PrinterSettings.PrinterName = printer;
 
-                        // ตรวจสอบว่าเครื่องพิมพ์ที่เลือกมีอยู่จริง
                         if (!printDoc.PrinterSettings.IsValid)
                         {
-                            txtstatus.Text += "เครื่องพิมพ์ที่เลือกไม่ถูกต้อง หรือไม่สามารถเข้าถึงได้." + Environment.NewLine;
-                            return;  // ออกจากฟังก์ชันหากเครื่องพิมพ์ไม่สามารถใช้งานได้
+                            txtstatus.Text += "Invalid printer." + Environment.NewLine;
+                            return;
                         }
-                        else
-                        {
-                            // ถ้าเครื่องพิมพ์ถูกต้องให้พิมพ์เอกสาร
-                            printDoc.PrintPage += new PrintPageEventHandler(ReportDocument1_PrintPage);
-                            printDoc.Print();  // ส่งคำสั่งพิมพ์
-                        }
+
+                        printDoc.PrintPage += new PrintPageEventHandler(ReportDocument1_PrintPage);
+                        printDoc.Print();
+                    }
+                    else
+                    {
+                        txtstatus.Text += status + data + Environment.NewLine;
+                        return;
                     }
                 }
                 else
                 {
                     txtstatus.Text += status + data + Environment.NewLine;
+                    return;
                 }
             }
             catch (Exception ex)
@@ -364,27 +301,10 @@ namespace App.Net
                 {
                     writer.WriteLine($"Error Time: {DateTime.Now}");
                     writer.WriteLine(ex.ToString());
-                    writer.WriteLine("----------------------------------------[UpdateFields(RequestReportModel data)]");
+                    writer.WriteLine("----------------------------------------[UpdateFields(EndOfDayReportModel data)]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "UpdateFields(RequestReportModel data) ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async Task ListenForRequests(CancellationToken token)
-        {
-            try
-            {
-                while (_listener.IsListening && !token.IsCancellationRequested)
-                {
-                    var context = await _listener.GetContextAsync();
-
-                    await _printController.ProcessRequest(context);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log($"ListenForRequests Error: {ex.Message}");
+                MessageBox.Show("Error displaying EndOfDayReport", "HandleFrontendAndPrint", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -411,7 +331,7 @@ namespace App.Net
                     Visible = true
                 };
 
-                // ระบุ Path สำหรับ Icon (หากมีไฟล์ .ico)
+                //ะบ Path ับ Icon (าก .ico)
                 string iconPath = Path.Combine(Application.StartupPath, "iconBar", "printer.ico");
                 if (File.Exists(iconPath))
                 {
@@ -425,7 +345,7 @@ namespace App.Net
 
                 trayIcon.ContextMenuStrip = trayMenu;
 
-                // ระบุ Path สำหรับ Icon ของหน้าต่างหลัก (ถ้ามี)
+                //ะบ Path ับ Icon องหนาตางัก ()
                 string iconPathbar = Path.Combine(Application.StartupPath, "iconBar", "statusbar.ico");
                 if (File.Exists(iconPathbar))
                 {
@@ -445,34 +365,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[handleDesige()]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "handleDesige() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void UpdateTextBox(string textBoxName, string qtyValue)
-        {
-            try
-            {
-                Control[] controls = Controls.Find(textBoxName, true);
-
-                if (controls.Length > 0 && controls[0] is System.Windows.Forms.TextBox textBox)
-                {
-                    textBox.Text = qtyValue;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log($"UpdateTextBox Error in listener loop: {ex.Message}");
-
-                string filePath = Application.StartupPath + @"\errorLog.txt";
-                using (StreamWriter writer = new StreamWriter(filePath, true))
-                {
-                    writer.WriteLine($"Error Time: {DateTime.Now}");
-                    writer.WriteLine(ex.ToString());
-                    writer.WriteLine("----------------------------------------[UpdateTextBox]");
-                }
-
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "UpdateTextBox ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "handleDesige() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -493,11 +386,11 @@ namespace App.Net
                         }
                         catch (ObjectDisposedException)
                         {
-                            // Form หรือ Control ถูกปิดไปแล้ว จัดการข้อผิดพลาดนี้โดยไม่ทำอะไร
+                            // Form Controlูกิด ัดรขอผิดาด
                         }
                         catch (InvalidAsynchronousStateException)
                         {
-                            // เธรดถูกปิด จัดการข้อผิดพลาดนี้โดยไม่ทำอะไร หรือ log ตามต้องการ
+                            //รดูกิด ัดรขอผิดาด log อง
                         }
                     }
                     else
@@ -526,12 +419,12 @@ namespace App.Net
 
                     if (!this.IsDisposed)
                     {
-                        MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "Log ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("ุณาติดหนาท", "Log ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch
                 {
-                    // ในกรณีที่เกิดข้อผิดพลาดในการบันทึก log หรือแสดง MessageBox ก็ไม่ทำอะไร
+                    // ในกรณีทิดอผิดาดในกรบันึก log สด MessageBox 
                 }
             }
         }
@@ -560,7 +453,6 @@ namespace App.Net
 
                                 switch (key)
                                 {
-
                                     case "printCompanyName":
                                         Setting.printCompanyName = value;
                                         AppendStatus("printCompanyName:" + value);
@@ -617,6 +509,10 @@ namespace App.Net
                                         Setting.portURL = value;
                                         AppendStatus("portURL:" + Setting.portURL);
                                         break;
+                                    case "hostURL":
+                                        Setting.hostURL = value;
+                                        AppendStatus("hostURL:" + Setting.hostURL);
+                                        break;
                                     case "printerName":
                                         Setting.printer = value;
                                         AppendStatus("printerName:" + Setting.printer);
@@ -641,6 +537,15 @@ namespace App.Net
                                         Setting.refillPrint = refillPrintSettingValue;
                                         AppendStatus("refillPrint: " + Setting.refillPrint.ToString());
                                         break;
+                                    case "ShowRemarkes":
+                                        if (!bool.TryParse(value, out bool ShowRemarkesSettingValue))
+                                        {
+                                            ShowRemarkesSettingValue = true;
+                                        }
+                                        DetailDenom.ShowRemarkes = ShowRemarkesSettingValue;
+                                        AppendStatus("ShowRemarkes: " + DetailDenom.ShowRemarkes.ToString());
+                                        break;
+                                        
                                     case "dispensePrint":
                                         if (!bool.TryParse(value, out bool dispensePrintSettingValue))
                                         {
@@ -649,13 +554,13 @@ namespace App.Net
                                         Setting.dispensePrint = dispensePrintSettingValue;
                                         AppendStatus("dispensePrint: " + Setting.dispensePrint.ToString());
                                         break;
-                                    case "dispositPrint":
+                                    case "depositPrint":
                                         if (!bool.TryParse(value, out bool dispositPrintSettingValue))
                                         {
                                             dispositPrintSettingValue = true;
                                         }
                                         Setting.dispositPrint = dispositPrintSettingValue;
-                                        AppendStatus("dispositPrint: " + Setting.dispositPrint.ToString());
+                                        AppendStatus("depositPrint: " + Setting.dispositPrint.ToString());
                                         break;
                                     case "endofdayPrint":
                                         if (!bool.TryParse(value, out bool endofdayPrintSettingValue))
@@ -689,22 +594,61 @@ namespace App.Net
                                         Setting.exchangeDispPrint = exchangeDispPrintSettingValue;
                                         AppendStatus("exchangeDispPrint: " + Setting.exchangeDispPrint.ToString());
                                         break;
+                                    case "cashCollectPrint":
+                                        if (!bool.TryParse(value, out bool cashCollectPrintSettingValue))
+                                        {
+                                            cashCollectPrintSettingValue = true;
+                                        }
+                                        Setting.cashCollectPrint = cashCollectPrintSettingValue;
+                                        AppendStatus("cashCollectPrint: " + Setting.cashCollectPrint.ToString());
+                                        break;
+                                    case "changeDepositPrint":
+                                        if (!bool.TryParse(value, out bool changeDepositPrintSettingValue))
+                                        {
+                                            changeDepositPrintSettingValue = true;
+                                        }
+                                        Setting.changeDepositPrint = changeDepositPrintSettingValue;
+                                        AppendStatus("changeDepositPrint: " + Setting.changeDepositPrint.ToString());
+                                        break;
+                                    case "changeDispensePrint":
+                                        if (!bool.TryParse(value, out bool changeDispensePrintSettingValue))
+                                        {
+                                            changeDispensePrintSettingValue = true;
+                                        }
+                                        Setting.changeDispensePrint = changeDispensePrintSettingValue;
+                                        AppendStatus("changeDispensePrint: " + Setting.changeDispensePrint.ToString());
+                                        break;
+                                    case "tipExchangePrint":
+                                        if (!bool.TryParse(value, out bool tipExchangePrintSettingValue))
+                                        {
+                                            tipExchangePrintSettingValue = true;
+                                        }
+                                        Setting.tipExchangePrint = tipExchangePrintSettingValue;
+                                        AppendStatus("tipExchangePrint: " + Setting.tipExchangePrint.ToString());
+                                        break;
+                                    case "receivePrint":
+                                        if (!bool.TryParse(value, out bool receivePrintSettingValue))
+                                        {
+                                            receivePrintSettingValue = true;
+                                        }
+                                        Setting.receivePrint = receivePrintSettingValue;
+                                        AppendStatus("receivePrint: " + Setting.receivePrint.ToString());
+                                        break;
                                 }
                             }
                         }
 
 
-                        // อ่านชื่อเครื่องพิมพ์จาก DetailDenom.printer
+                        // DetailDenom.printer
                         string printer = Setting.printer;
 
-                        // สร้าง PrintDocument และกำหนด PrinterSettings
+                        // PrintDocumentะกหน PrinterSettings
                         PrintDocument printDoc = new PrintDocument();
                         printDoc.PrinterSettings.PrinterName = printer;
 
-                        // ตรวจสอบว่าเครื่องพิมพ์ที่เลือกมีอยู่จริง
                         if (!printDoc.PrinterSettings.IsValid)
                         {
-                            txtstatus.Text += "เครื่องพิมพ์ที่เลือกไม่ถูกต้อง หรือไม่สามารถเข้าถึงได้." + Environment.NewLine;
+                            txtstatus.Text += "องอกูกอง รถาถึง." + Environment.NewLine;
                         }
 
                         return true;
@@ -733,7 +677,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[ImageSlip]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -771,7 +715,22 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[ImageSlip]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "ImageSlip ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool IsPortInUse(string port)
+        {
+            try
+            {
+                var tcpListener = new TcpListener(IPAddress.Loopback, int.Parse(port));
+                tcpListener.Start();
+                tcpListener.Stop();
+                return false;
+            }
+            catch (SocketException)
+            {
+                return true;
             }
         }
 
@@ -799,7 +758,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[AppendStatus]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "AppendStatus ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "AppendStatus ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -830,7 +789,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[OnMinimizet()]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "OnMinimizet() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "OnMinimizet() ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -853,7 +812,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[OnMinimize]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "OnMinimize ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "OnMinimize ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -889,7 +848,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[OnOpen]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "OnOpen ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "OnOpen ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -897,7 +856,7 @@ namespace App.Net
         {
             try
             {
-                _listener?.Stop();
+                Program.StopWebHost();
                 Application.Exit();
             }
             catch
@@ -909,8 +868,7 @@ namespace App.Net
         {
             try
             {
-                _listener?.Stop();
-                _cancellationTokenSource?.Cancel();
+                Program.StopWebHost();
             }
             catch (Exception ex)
             {
@@ -922,7 +880,7 @@ namespace App.Net
                     writer.WriteLine("----------------------------------------[Form1_FormClosing]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "Form1_FormClosing ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ุณาติดหนาท", "Form1_FormClosing ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -930,7 +888,7 @@ namespace App.Net
         {
             try
             {
-                _listener?.Stop();
+                Program.StopWebHost();
                 Application.Exit();
             }
             catch
@@ -948,30 +906,29 @@ namespace App.Net
             if (panel1.Visible == true)
             {
                 panel1.Visible = false;
+                cbNamePrinter.Visible = false;
+                bt_set.Visible = false;
             }
             else if (panel1.Visible == false)
             {
                 panel1.Visible = true;
+                cbNamePrinter.Visible = true;
+                bt_set.Visible = true;
             }
         }
 
         private void ReciveDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtPayout.Text))
+            {
+                txtPayout.Text = "";
+            }
+            
             System.Drawing.Image logoImage = PTCreatus.Image;
 
             Receipt helper = new Receipt();
             helper.DetailPrintTypePadingRight(txtPayout);
             helper.PrintReceipt(e, logoImage, txtPayout.Text);
-
-            if (!string.IsNullOrEmpty(txtPayout.Text))
-            {
-                DetailDenom.printType = "";
-                DetailDenom.txNo = "";
-                DetailDenom.reqNo = "";
-                DetailDenom.seqNo = "";
-                DetailDenom.customer = "";
-                txtPayout.Text = "";
-            }
         }
 
         private void Server_API_Print_MouseDown(object sender, MouseEventArgs e)
@@ -996,62 +953,54 @@ namespace App.Net
 
         private void ReportDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtPayout.Text))
+            {
+                txtPayout.Text = "";
+            }
+
             System.Drawing.Image logoImage = PTCreatus.Image;
 
             Receipt helper = new Receipt();
-            helper.PrintReceiptReport(e, logoImage, txtPayout.Text);
 
-            if (!string.IsNullOrEmpty(txtPayout.Text))
-            {
-                DetailDenom.date = "";
-                DetailDenom.totalSale = "";
-                DetailDenom.totalFee = "";
-                DetailDenom.totalRefill = "";
-                DetailDenom.totalDeposit = "";
-                DetailDenom.totalDispense = "";
-                DetailDenom.totalRelease = "";
-                DetailDenom.thisRelease = "";
-                DetailDenom.thisRemaining = "";
-                txtPayout.Text = "";
-            }
+            helper.PrintReceiptReport_EndOfDay(e, logoImage, txtPayout.Text);
         }
 
         private void bt_set_Click(object sender, EventArgs e)
         {
             try
             {
-                // ตรวจสอบว่าได้เลือกเครื่องพิมพ์จาก ComboBox หรือยัง
+                // วจอบอกองาก ComboBox ัง
                 if (cbNamePrinter.SelectedItem != null)
                 {
-                    // อ่านชื่อเครื่องพิมพ์ที่เลือกจาก ComboBox
-                    string selectedPrinter = cbNamePrinter.SelectedItem?.ToString() ?? "DefaultPrinter";  // ใช้ null-coalescing
+                    // านองอกาก ComboBox
+                    string selectedPrinter = cbNamePrinter.SelectedItem?.ToString() ?? "DefaultPrinter";  // null-coalescing
 
-                    // อ่านข้อมูลจากไฟล์ Connect.txt
+                    // านลจาก Connect.txt
                     string filePath = Application.StartupPath + @"\Connect.txt";
                     string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
-                    // สร้างตัวแปรเพื่อเก็บข้อมูลที่อัปเดตแล้ว
+                    // าง็บขลทัปเดต
                     List<string> updatedLines = new List<string>();
 
-                    // แก้ไขบรรทัดที่มี 'printerName' โดยแทนที่ค่าที่มีอยู่เดิม
+                    // ไขบรทัด 'printerName' แทนาท
                     foreach (var line in lines)
                     {
                         if (line.StartsWith("printerName;"))
                         {
-                            // ถ้ามี printerName, แทนที่ค่าหลังเครื่องหมาย ; ด้วยชื่อเครื่องพิมพ์ที่เลือก
+                            //  printerName, แทนังอง ; ยชองอก
                             updatedLines.Add("printerName;" + selectedPrinter);
                         }
                         else
                         {
-                            // ถ้าไม่ใช่ printerName, ให้เพิ่มบรรทัดนี้ตามปกติ
+                            //  printerName, รทัด
                             updatedLines.Add(line);
                         }
                     }
 
-                    // เขียนข้อมูลที่แก้ไขแล้วกลับไปที่ไฟล์ Connect.txt
+                    //ยนลทวกับไปท Connect.txt
                     File.WriteAllLines(filePath, updatedLines, Encoding.UTF8);
 
-                    // อัปเดตการตั้งค่าเครื่องพิมพ์ใน Settings
+                    // ัปเดตรต้งคอง Settings
                     Setting.printer = selectedPrinter;
 
                     AppendStatus("printerName set to: " + selectedPrinter);
@@ -1060,13 +1009,13 @@ namespace App.Net
                 }
                 else
                 {
-                    MessageBox.Show("กรุณาเลือกเครื่องพิมพ์ก่อน.", "เลือกเครื่องพิมพ์", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("ุณอกองอน.", "อกอง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                // จัดการข้อผิดพลาด
-                MessageBox.Show("เกิดข้อผิดพลาดในการบันทึกข้อมูล: " + ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // ัดรขอผิดาด
+                MessageBox.Show("ิดอผิดาดในกรบันึก: " + ex.Message, "อผิดาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

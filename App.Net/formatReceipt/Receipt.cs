@@ -1,16 +1,56 @@
 ﻿using App.Net.Configuration;
 using App.Net.Model;
-using System;
-using System.Collections.Generic;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace App.Net.formatReceipt
 {
     public class Receipt
     {
+        private static string ShortAfterUnderscore(string s, int n = 8)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+
+            int idx = s.IndexOf('_');
+            if (idx < 0)
+            {
+                // กรณีไม่มี "_" ก็ย่อจากต้นสตริงแทน (ตามต้องการ)
+                return s.Length > n ? s.Substring(0, n) + "..." : s;
+            }
+
+            int start = idx + 1;
+            int take = Math.Min(n, Math.Max(0, s.Length - start));
+
+            // ส่วนหน้าคงไว้ถึง "_"  +  ส่วนหลังเอาแค่ n ตัว  +  "..." ถ้ายังมีต่อ
+            string head = s.Substring(0, start);
+            string tail = s.Substring(start, take);
+            bool needEllipsis = (start + take) < s.Length;
+
+            return head + tail + (needEllipsis ? "..." : "");
+        }
+
+        private static IEnumerable<string> WrapFixedWidth(string text, int width)
+        {
+            if (string.IsNullOrEmpty(text) || width <= 0)
+                yield break;
+
+            // รักษา \r\n เดิม (ถ้ามี) แล้วค่อยตัดทีละบล็อก
+            foreach (var raw in Regex.Split(text, @"\r?\n"))
+            {
+                if (raw.Length == 0)
+                {
+                    yield return string.Empty;
+                    continue;
+                }
+
+                for (int i = 0; i < raw.Length; i += width)
+                {
+                    int len = Math.Min(width, raw.Length - i);
+                    yield return raw.Substring(i, len);
+                }
+            }
+        }
+
         private void DrawTextSale(PrintPageEventArgs e, string label, string value, int yPosition, Font font)
         {
             try
@@ -43,94 +83,45 @@ namespace App.Net.formatReceipt
             }
         }
 
-        //e.Graphics.DrawString($"ชื่อลูกค้า : {DetailDenom.customer}", printFont, Brushes.Black, new Point(10, 140));
-        //e.Graphics.DrawString($"เลขผู้เสียภาษี : {Setting.printTaxId}", printFont, Brushes.Black, new Point(10, 140));
-        //e.Graphics.DrawString($"TX# : {DetailDenom.txNo}", printFont, Brushes.Black, new Point(10, 160));
-        //e.Graphics.DrawString($"Req# : {DetailDenom.reqNo}", printFont, Brushes.Black, new Point(10, 180));
-        //e.Graphics.DrawString($"Seq# : {DetailDenom.seqNo}", printFont, Brushes.Black, new Point(10, 160));
-        //e.Graphics.DrawString($"Date : {DetailDenom.txDate}", printFont, Brushes.Black, new Point(10, 160));
-        //e.Graphics.DrawString($"======================================", printFont, Brushes.Black, new Point(10, 180));
-
         public void PrintReceipt(PrintPageEventArgs e, Image logoImage, string txtPayout)
         {
             try
             {
                 Font printFont = new Font("Arial", 9);
-
                 var srcRect = new Rectangle(0, 0, logoImage.Width, logoImage.Height);
                 var desRect = new Rectangle(100, 0, 80, 53);
 
                 if (e.Graphics != null)
                 {
                     e.Graphics.DrawImage(logoImage, desRect, srcRect, GraphicsUnit.Pixel);
-                    //if (!string.IsNullOrEmpty(Setting.printAddress1) || Setting.printAddress1 != "Default")
-                    //{
-                    //    e.Graphics.DrawString(Setting.printAddress1, printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //}
-                    //if (!string.IsNullOrEmpty(Setting.printAddress2) || Setting.printAddress2 != "Default")
-                    //{
-                    //    e.Graphics.DrawString(Setting.printAddress2, printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //}
-                    //if (!string.IsNullOrEmpty(Setting.printAddress3) || Setting.printAddress3 != "Default")
-                    //{
-                    //    e.Graphics.DrawString(Setting.printAddress3, printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //}
                     e.Graphics.DrawString(Setting.printCompanyName, new Font("Arial", 9, FontStyle.Bold), Brushes.Black, new Point(Setting.printMargin, 60));
                     e.Graphics.DrawString("บันทึกการทำรายการผ่านเครื่อง", new Font("Arial", 9, FontStyle.Bold), Brushes.Black, new Point(10, 80));
-                    e.Graphics.DrawString($"ประเภท : {DetailDenom.printType}", printFont, Brushes.Black, new Point(10, 100));                   
-                    e.Graphics.DrawString($"สาขา : {Setting.printBranchName}", printFont, Brushes.Black, new Point(10, 120));
+                    e.Graphics.DrawString($"ประเภท        : {DetailDenom.printTypeTHB}", printFont, Brushes.Black, new Point(10, 100));                   
+                    e.Graphics.DrawString($"สาขา            : {Setting.printBranchName}", printFont, Brushes.Black, new Point(10, 120));
+                    string displayReqId = ShortAfterUnderscore(DetailDenom.txNo, 8);
+                    e.Graphics.DrawString($"เลขที่รายการ  : {displayReqId}", printFont, Brushes.Black, new Point(10, 140));
 
                     int XPosition = 10;
                     float yPosition = 200;
-                    int yCasePosition = 140; 
+                    int yCasePosition = 160; 
 
-                    if (!string.IsNullOrEmpty(Setting.printTaxId) || Setting.printTaxId != "Default")
+                    if (!string.IsNullOrEmpty(Setting.printTaxId) && Setting.printTaxId != "Default")
                     {
-                        e.Graphics.DrawString($"เลขผู้เสียภาษี : {Setting.printTaxId}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
+                        e.Graphics.DrawString($"เลขผู้เสียภาษี  : {Setting.printTaxId}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
                         yCasePosition += 20; 
                     }
-                    //if (!string.IsNullOrEmpty(DetailDenom.txNo))
-                    //{
-                    //    e.Graphics.DrawString($"TX# : {DetailDenom.txNo}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //    yCasePosition += 20; 
-                    //}
-                    //if (!string.IsNullOrEmpty(DetailDenom.reqNo))
-                    //{
-                    //    e.Graphics.DrawString($"Req# : {DetailDenom.reqNo}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //    yCasePosition += 20; 
-                    //}
-                    //if (!string.IsNullOrEmpty(DetailDenom.seqNo))
-                    //{
-                    //    e.Graphics.DrawString($"Seq# : {DetailDenom.seqNo}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //    yCasePosition += 20; 
-                    //}
                     if (!string.IsNullOrEmpty(DetailDenom.customer))
                     {
-                        e.Graphics.DrawString($"ชื่อลูกค้า : {DetailDenom.customer}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
+                        e.Graphics.DrawString($"ชื่อลูกค้า        : {DetailDenom.customer}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
                         yCasePosition += 20; 
                     }
-                    if (Setting.printMachineName != "Default")
+                    if (!string.IsNullOrEmpty(Setting.printMachineName) && Setting.printMachineName != "Default")
                     {
-                        e.Graphics.DrawString($"ชื่อเครื่อง : {DetailDenom.customer}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
+                        e.Graphics.DrawString($"ชื่อเครื่อง       : {Setting.printMachineName}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
                         yCasePosition += 20;
                     }
-                    //if (Setting.printAddress1 != "Default")
-                    //{
-                    //    e.Graphics.DrawString($"ที่อยู่สาขา1 : {DetailDenom.customer}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //    yCasePosition += 20;
-                    //}
-                    //if (Setting.printAddress2 != "Default")
-                    //{
-                    //    e.Graphics.DrawString($"ที่อยู่สาขา2 : {DetailDenom.customer}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //    yCasePosition += 20;
-                    //}
-                    //if (Setting.printAddress3 != "Default")
-                    //{
-                    //    e.Graphics.DrawString($"ที่อยู่สาขา3 : {DetailDenom.customer}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
-                    //    yCasePosition += 20;
-                    //}
 
-                    e.Graphics.DrawString($"Date : {DetailDenom.txDate}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
+                    e.Graphics.DrawString($"Date            : {DetailDenom.txDate}", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
                     yCasePosition += 20; 
                     e.Graphics.DrawString($"======================================", printFont, Brushes.Black, new Point(XPosition, yCasePosition));
                     yCasePosition += 20; 
@@ -142,7 +133,7 @@ namespace App.Net.formatReceipt
                     {
                         SizeF lineSize = e.Graphics.MeasureString(line, printFont);
                         e.Graphics.DrawString(line, printFont, Brushes.Black, new PointF(XPosition, yPosition));
-                        yPosition += lineSize.Height; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                        yPosition += lineSize.Height; 
                     }
 
                     if (DetailDenom.printType == "sale")
@@ -240,7 +231,7 @@ namespace App.Net.formatReceipt
                         yPosition += 40;
                         e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
                     }
-                    else if (DetailDenom.printType == "remove-casstte")
+                    else if (DetailDenom.printType == "remove-cassette")
                     {
                         yPosition += 10;
                         DrawTextSale(e, "ยอดเงินรวม", DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
@@ -255,6 +246,61 @@ namespace App.Net.formatReceipt
                     {
                         yPosition += 10;
                         DrawTextSale(e, "ยอดเงินรวม", DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
+
+                        yPosition += 30;
+                        e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+
+                        yPosition += 40;
+                        e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+                    }
+                    else if (DetailDenom.printType == "cash-collect")
+                    {
+                        yPosition += 10;
+                        DrawTextSale(e, "ยอดเงินนำลงกล่องรวม", DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
+
+                        yPosition += 30;
+                        e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+
+                        yPosition += 40;
+                        e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+                    }
+                    else if (DetailDenom.printType == "change-dispense")
+                    {
+                        yPosition += 10;
+                        DrawTextSale(e, "ยอดเงินรวม", "- " + DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
+
+                        yPosition += 30;
+                        e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+
+                        yPosition += 40;
+                        e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+                    }
+                    else if (DetailDenom.printType == "change-deposit")
+                    {
+                        yPosition += 10;
+                        DrawTextSale(e, "ยอดเงินรวม", DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
+
+                        yPosition += 30;
+                        e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+
+                        yPosition += 40;
+                        e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+                    }
+                    else if (DetailDenom.printType == "tip-exchange")
+                    {
+                        yPosition += 10;
+                        DrawTextSale(e, "ยอดเงินแลกทริปรวม", DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
+
+                        yPosition += 30;
+                        e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+
+                        yPosition += 40;
+                        e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
+                    }
+                    else if (DetailDenom.printType == "receive")
+                    {
+                        yPosition += 10;
+                        DrawTextSale(e, "ยอดเงินรวม", "- " + DetailDenom.amount.ToString("N2"), (int)yPosition, printFont);
 
                         yPosition += 30;
                         e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, (int)yPosition));
@@ -282,88 +328,239 @@ namespace App.Net.formatReceipt
             }
         }
 
-        public void PrintReceiptReport(PrintPageEventArgs e, Image logoImage, string txtPayout)
+        public void PrintReceiptReport_EndOfDay(PrintPageEventArgs e, Image logoImage, string txtPayout)
         {
             try
             {
                 Font printFont = new Font("Arial", 9);
                 int XPosition = 10;
-                int yPosition = 120;
+                int yPosition = 240;
                 var srcRect = new Rectangle(0, 0, logoImage.Width, logoImage.Height);
                 var desRect = new Rectangle(100, 0, 80, 53);
 
                 if (e.Graphics != null)
                 {
+                    // โลโก้และหัวรายงาน
                     e.Graphics.DrawImage(logoImage, desRect, srcRect, GraphicsUnit.Pixel);
                     e.Graphics.DrawString(Setting.printCompanyName, new Font("Arial", 9, FontStyle.Bold), Brushes.Black, new Point(Setting.printMargin, 60));
-                    e.Graphics.DrawString("บันทึกการทำรายการผ่านเครื่อง", new Font("Arial", 9, FontStyle.Bold), Brushes.Black, new Point(XPosition, 80));
-                    e.Graphics.DrawString($"Date : {DetailDenom.date.ToString()}", printFont, Brushes.Black, new Point(XPosition, 100));
+                    e.Graphics.DrawString("บันทึกสรุปการทำรายการผ่านเครื่อง", new Font("Arial", 10, FontStyle.Bold), Brushes.Black, new Point(40, 90));
+
+                    // หัวบิล
+                    e.Graphics.DrawString($"วันที่ปิดรอบปัจจุบัน     : {DetailDenom.transactionDate}", printFont, Brushes.Black, new Point(XPosition, 120));
+
+                    e.Graphics.DrawString($"วันที่ปิดรอบก่อนหน้า   : {DetailDenom.lastEndOfDay}", printFont, Brushes.Black, new Point(XPosition, 140));
+
+                    e.Graphics.DrawString($"จำนวนธุรกรรมทั้งหมด : {DetailDenom.transactionCount.ToString("N0")}" +" รายการ", printFont, Brushes.Black, new Point(XPosition, 160));
+
+                    e.Graphics.DrawString($"รหัสเครื่อง    : {DetailDenom.machineId}", printFont, Brushes.Black, new Point(XPosition, 180));
+
+                    //e.Graphics.DrawString($"ReqId : {DetailDenom.reqId}", printFont, Brushes.Black, new Point(XPosition, 200));
+                    string displayReqId = ShortAfterUnderscore(DetailDenom.reqId, 8);
+
+                    e.Graphics.DrawString($"เลขที่รายการ : {displayReqId}", printFont, Brushes.Black, new Point(XPosition, 200));
+
+
+                    e.Graphics.DrawString($"======================================", printFont, Brushes.Black, new Point(XPosition, 220));
+
+                    // ==========================
+                    // เนื้อหาหลักของรายงาน
+                    // ==========================
 
                     if (!string.IsNullOrEmpty(DetailDenom.totalSale))
-                    { 
-                        e.Graphics.DrawString($"รวมยอดขายทั้งหมด : {DetailDenom.totalSale}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
-                    }
-                    if (!string.IsNullOrEmpty(DetailDenom.totalFee))
                     {
-                        e.Graphics.DrawString($"รวมยอดแลกเงินทั้งหมด : {DetailDenom.totalFee}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                        if (double.TryParse(DetailDenom.totalSale, out double totalSale))
+                        {
+                            e.Graphics.DrawString($"ยอดขายทั้งหมด            : {totalSale.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดขายทั้งหมด            : {DetailDenom.totalSale}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
-                    if (!string.IsNullOrEmpty(DetailDenom.totalRefill))
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalReceive))
                     {
-                        e.Graphics.DrawString($"รวมยอดเติมเงินทัั้งหมด : {DetailDenom.totalRefill}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                        if (double.TryParse(DetailDenom.totalReceive, out double totalReceive))
+                        {
+                            e.Graphics.DrawString($"ยอดคืนเงินทั้งหมด        : {totalReceive.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดคืนเงินทั้งหมด        : {DetailDenom.totalReceive}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
+
                     if (!string.IsNullOrEmpty(DetailDenom.totalDeposit))
                     {
-                        e.Graphics.DrawString($"รวมยอดฝากเงินทั้งหมด : {DetailDenom.totalDeposit}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                        if (double.TryParse(DetailDenom.totalDeposit, out double totalDeposit))
+                        {
+                            e.Graphics.DrawString($"ยอดฝากเงินทั้งหมด       : {totalDeposit.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดฝากเงินทั้งหมด       : {DetailDenom.totalDeposit}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalRefill))
+                    {
+                        if (double.TryParse(DetailDenom.totalRefill, out double totalRefill))
+                        {
+                            e.Graphics.DrawString($"ยอดเติมเงินทอนทั้งหมด : {totalRefill.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดเติมเงินทอนทั้งหมด : {DetailDenom.totalRefill}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                    }
+
                     if (!string.IsNullOrEmpty(DetailDenom.totalDispense))
                     {
-                        e.Graphics.DrawString($"รวมยอดถอนเงินทัั้งหมด : {DetailDenom.totalDispense}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                      
+                        if (double.TryParse(DetailDenom.totalDispense, out double totalDispense))
+                        {
+                            e.Graphics.DrawString($"ยอดถอนเงินทั้งหมด      : {totalDispense.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดถอนเงินทั้งหมด      : {DetailDenom.totalDispense}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
-                    if (!string.IsNullOrEmpty(DetailDenom.totalRelease))
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalChangeDispense))
                     {
-                        e.Graphics.DrawString($"รวมยอดนำเงินออกทั้งหมด : {DetailDenom.totalRelease}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                       
+                        if (double.TryParse(DetailDenom.totalChangeDispense, out double totalChangeDispense))
+                        {
+                            e.Graphics.DrawString($"ยอดเบิกเงินทอนทั้งหมด : {totalChangeDispense.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดเบิกเงินทอนทั้งหมด : {DetailDenom.totalChangeDispense}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
-                    if (!string.IsNullOrEmpty(DetailDenom.thisRelease))
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalChangeDeposit))
                     {
-                        e.Graphics.DrawString($"รวมยอดนำเงินออกรอบนี้ : {DetailDenom.thisRelease}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                      
+                        if (double.TryParse(DetailDenom.totalChangeDeposit, out double totalChangeDeposit))
+                        {
+                            e.Graphics.DrawString($"ยอดคืนเงินทอนทั้งหมด  : {totalChangeDeposit.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดคืนเงินทอนทั้งหมด  : {DetailDenom.totalChangeDeposit}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalExchangeSale))
+                    {
+                       
+                        if (double.TryParse(DetailDenom.totalExchangeSale, out double totalExchangeSale))
+                        {
+                            e.Graphics.DrawString($"ยอดแลกเงินรับทั้งหมด   : {totalExchangeSale.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดแลกเงินรับทั้งหมด   : {DetailDenom.totalExchangeSale}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalExchangeDispense))
+                    {
+                        if (double.TryParse(DetailDenom.totalExchangeDispense, out double totalExchangeDispense))
+                        {
+                            e.Graphics.DrawString($"ยอดแลกเงินจ่ายทั้งหมด  : {totalExchangeDispense.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดแลกเงินจ่ายทั้งหมด  : {DetailDenom.totalExchangeDispense}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(DetailDenom.totalRemove))
+                    {
+                        if (double.TryParse(DetailDenom.totalRemove, out double totalRemove))
+                        {
+                            e.Graphics.DrawString($"ยอดนำเงินออกทั้งหมด   : {totalRemove.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดนำเงินออกทั้งหมด   : {DetailDenom.totalRemove}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(DetailDenom.thisRemove))
+                    {                      
+                        if (double.TryParse(DetailDenom.thisRemove, out double thisRemove))
+                        {
+                            e.Graphics.DrawString($"ยอดนำเงินออกรอบนี้     : {thisRemove.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดนำเงินออกรอบนี้     : {DetailDenom.thisRemove}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                    }
+
                     if (!string.IsNullOrEmpty(DetailDenom.thisRemaining))
-                    {
-                        e.Graphics.DrawString($"รวมยอดเงินคงเหลือในเครื่อง : {DetailDenom.thisRemaining}", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                        yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                    {                       
+                        if (double.TryParse(DetailDenom.thisRemaining, out double thisRemaining))
+                        {
+                            e.Graphics.DrawString($"ยอดคงเหลือในเครื่อง     : {thisRemaining.ToString("N2")}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString($"ยอดคงเหลือในเครื่อง     : {DetailDenom.thisRemaining}", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                            yPosition += 20;
+                        }
                     }
 
-                    e.Graphics.DrawString($"======================================", printFont, Brushes.Black, new Point(XPosition, yPosition));
-                    yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                    e.Graphics.DrawString($"--------------------------------------------------------------", printFont, Brushes.Black, new Point(XPosition, yPosition));
+                    yPosition += 40;
 
-                    e.Graphics.DrawString("ลงชื่อ                " + DetailDenom.username, printFont, Brushes.Black, new Point(XPosition, yPosition));
-                    yPosition += 20; // เพิ่มตำแหน่ง y สำหรับข้อความถัดไป
+                    // ส่วนท้ายของรายงาน
+                    e.Graphics.DrawString("ลงชื่อ .................................................................", printFont, Brushes.Black, new Point(XPosition, yPosition));
 
-                    e.Graphics.DrawString("______________________________________", printFont, Brushes.Black, new Point(XPosition, yPosition));
                 }
                 else
                 {
-                    MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "PrintReceiptReport_Receipt e.Graphics เป็น null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "PrintReceiptReport_EndOfDay: e.Graphics เป็น null", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                string filePath = Application.StartupPath + @"\errorLog.txt";
+                string filePath = Application.StartupPath + @"\\errorLog.txt";
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
                     writer.WriteLine($"Error Time: {DateTime.Now}");
                     writer.WriteLine(ex.ToString());
-                    writer.WriteLine("----------------------------------------[PrintReceiptReport_Receipt]");
+                    writer.WriteLine("----------------------------------------[PrintReceiptReport_EndOfDay]");
                 }
 
-                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "PrintReceiptReport_Receipt ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("กรุณาติดต่อเจ้าหน้าที่", "PrintReceiptReport_EndOfDay ApiPrinteeCCWEB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -386,6 +583,20 @@ namespace App.Net.formatReceipt
                     }
 
                     txtPayout.AppendText($"----------------------------------------------------------------"+"\r\n");
+                }
+
+                if (DetailDenom.ShowRemarkes)
+                {
+                    txtPayout.AppendText("หมายเหตุการทำรายการ\r\n");
+
+                    string detailData = DetailDenom.remarkes ?? string.Empty;
+
+                    foreach (var line in WrapFixedWidth(detailData, 35)) // 30 ตัว/บรรทัด
+                    {
+                        txtPayout.AppendText(line + Environment.NewLine);
+                    }
+
+                    txtPayout.AppendText("----------------------------------------------------------------\r\n");
                 }
 
                 if (DetailDenom.ShowDenom == true)
@@ -918,6 +1129,273 @@ namespace App.Net.formatReceipt
                             {
                                 txtPayout.AppendText("\r\n" + $"0.25" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashOut025}"
                                                              + $"=     ".PadLeft(14) + $"{DetailDenom.CashOut025 * 0.25:n2}");
+                            }
+                        }
+
+                        txtPayout.AppendText("\r\n");
+                    }
+
+                    int[] cashCollectValues = {
+                        DetailDenom.CashCollect1000, DetailDenom.CashCollect500, DetailDenom.CashCollect100, DetailDenom.CashCollect50,
+                        DetailDenom.CashCollect20, DetailDenom.CashCollect10, DetailDenom.CashCollect5, DetailDenom.CashCollect2,
+                        DetailDenom.CashCollect1, DetailDenom.CashCollect050, DetailDenom.CashCollect025
+                    };
+                    if (cashCollectValues.Any(cash => cash > 0))
+                    {
+                        txtPayout.AppendText("เงินนำลงกล่องเก็บ");
+
+                        if (DetailDenom.CashCollect1000 > 0)
+                        {
+                            if (DetailDenom.CashCollect1000 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1,000" + "X".PadLeft(10) + "".PadLeft(13) + $"{DetailDenom.CashCollect1000}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect1000 * 1000:n0}");
+                            }
+                            else if (DetailDenom.CashCollect1000 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1,000" + "X".PadLeft(10) + "".PadLeft(13) + $"{DetailDenom.CashCollect1000}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect1000 * 1000:n0}");
+                            }
+                            else if (DetailDenom.CashCollect1000 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1,000" + "X".PadLeft(10) + "".PadLeft(13) + $"{DetailDenom.CashCollect1000}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect1000 * 1000:n0}");
+                            }
+                            else if (DetailDenom.CashCollect1000 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1,000" + "X".PadLeft(10) + "".PadLeft(13) + $"{DetailDenom.CashCollect1000}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect1000 * 1000:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect500 > 0)
+                        {
+                            if (DetailDenom.CashCollect500 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"500" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect500}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect500 * 500:n0}");
+                            }
+                            else if (DetailDenom.CashCollect500 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"500" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect500}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect500 * 500:n0}");
+                            }
+                            else if (DetailDenom.CashCollect500 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"500" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect500}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect500 * 500:n0}");
+                            }
+                            else if (DetailDenom.CashCollect500 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"500" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect500}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect500 * 500:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect100 > 0)
+                        {
+
+                            if (DetailDenom.CashCollect100 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"100" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect100}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect100 * 100:n0}");
+                            }
+                            else if (DetailDenom.CashCollect100 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"100" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect100}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect100 * 100:n0}");
+                            }
+                            else if (DetailDenom.CashCollect100 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"100" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect100}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect100 * 100:n0}");
+                            }
+                            else if (DetailDenom.CashCollect100 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"100" + "X".PadLeft(13) + "".PadLeft(13) + $"{DetailDenom.CashCollect100}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect100 * 100:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect50 > 0)
+                        {
+                            if (DetailDenom.CashCollect50 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"50" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect50}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect50 * 50:n0}");
+                            }
+                            else if (DetailDenom.CashCollect50 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"50" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect50}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect50 * 50:n0}");
+                            }
+                            else if (DetailDenom.CashCollect50 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"50" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect50}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect50 * 50:n0}");
+                            }
+                            else if (DetailDenom.CashCollect50 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"50" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect50}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect50 * 50:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect20 > 0)
+                        {
+                            if (DetailDenom.CashCollect20 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"20" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect20}"
+                                                             + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect20 * 20:n0}");
+                            }
+                            else if (DetailDenom.CashCollect20 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"20" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect20}"
+                                                             + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect20 * 20:n0}");
+                            }
+                            else if (DetailDenom.CashCollect20 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"20" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect20}"
+                                                             + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect20 * 20:n0}");
+                            }
+                            else if (DetailDenom.CashCollect20 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"20" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect20}"
+                                                             + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect20 * 20:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect10 > 0)
+                        {
+                            if (DetailDenom.CashCollect10 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"10" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect10}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect10 * 10:n0}");
+                            }
+                            else if (DetailDenom.CashCollect10 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"10" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect10}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect10 * 10:n0}");
+                            }
+                            else if (DetailDenom.CashCollect10 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"10" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect10}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect10 * 10:n0}");
+                            }
+                            else if (DetailDenom.CashCollect10 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"10" + "X".PadLeft(15) + "".PadLeft(13) + $"{DetailDenom.CashCollect10}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect10 * 10:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect5 > 0)
+                        {
+                            if (DetailDenom.CashCollect5 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"5" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect5}"
+                                                             + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect5 * 5:n0}");
+                            }
+                            else if (DetailDenom.CashCollect5 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"5" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect5}"
+                                                             + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect5 * 5:n0}");
+                            }
+                            else if (DetailDenom.CashCollect5 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"5" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect5}"
+                                                             + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect5 * 5:n0}");
+                            }
+                            else if (DetailDenom.CashCollect5 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"5" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect5}"
+                                                             + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect5 * 5:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect2 > 0)
+                        {
+                            if (DetailDenom.CashCollect2 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"2" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect2}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect2 * 2:n0}");
+                            }
+                            else if (DetailDenom.CashCollect2 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"2" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect2}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect2 * 2:n0}");
+                            }
+                            else if (DetailDenom.CashCollect2 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"2" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect2}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect2 * 2:n0}");
+                            }
+                            else if (DetailDenom.CashCollect2 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"2" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect2}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect2 * 2:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect1 > 0)
+                        {
+                            if (DetailDenom.CashCollect1 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect1}"
+                                                             + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect1 * 1:n0}");
+                            }
+                            else if (DetailDenom.CashCollect1 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect1}"
+                                                             + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect1 * 1:n0}");
+                            }
+                            else if (DetailDenom.CashCollect1 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect1}"
+                                                             + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect1 * 1:n0}");
+                            }
+                            else if (DetailDenom.CashCollect1 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"1" + "X".PadLeft(17) + "".PadLeft(13) + $"{DetailDenom.CashCollect1}"
+                                                             + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect1 * 1:n0}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect050 > 0)
+                        {
+                            if (DetailDenom.CashCollect050 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.50" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect050}"
+                                                            + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect050 * 0.50:n2}");
+                            }
+                            else if (DetailDenom.CashCollect050 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.50" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect050}"
+                                                            + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect050 * 0.50:n2}");
+                            }
+                            else if (DetailDenom.CashCollect050 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.50" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect050}"
+                                                            + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect050 * 0.50:n2}");
+                            }
+                            else if (DetailDenom.CashCollect050 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.50" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect050}"
+                                                            + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect050 * 0.50:n2}");
+                            }
+                        }
+                        if (DetailDenom.CashCollect025 > 0)
+                        {
+                            if (DetailDenom.CashCollect025 > 999)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.25" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect025}"
+                                                             + $"=     ".PadLeft(8) + $"{DetailDenom.CashCollect025 * 0.25:n2}");
+                            }
+                            else if (DetailDenom.CashCollect025 > 99)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.25" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect025}"
+                                                             + $"=     ".PadLeft(10) + $"{DetailDenom.CashCollect025 * 0.25:n2}");
+                            }
+                            else if (DetailDenom.CashCollect025 > 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.25" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect025}"
+                                                             + $"=     ".PadLeft(12) + $"{DetailDenom.CashCollect025 * 0.25:n2}");
+                            }
+                            else if (DetailDenom.CashCollect025 <= 9)
+                            {
+                                txtPayout.AppendText("\r\n" + $"0.25" + "X".PadLeft(12) + "".PadLeft(13) + $"{DetailDenom.CashCollect025}"
+                                                             + $"=     ".PadLeft(14) + $"{DetailDenom.CashCollect025 * 0.25:n2}");
                             }
                         }
                     }
