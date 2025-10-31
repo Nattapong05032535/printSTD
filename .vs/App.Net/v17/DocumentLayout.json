@@ -1,26 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\C#.net\\printMk\\",
+  "WorkspaceRootPath": "D:\\C#.net\\printSTD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printmk\\app.net\\formatreceipt\\receipt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\formatreceipt\\receipt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printstd\\app.net\\model\\endofdayreportmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\model\\endofdayreportmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printmk\\app.net\\view\\mainserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printstd\\app.net\\controllers\\printapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\controllers\\printapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printstd\\app.net\\view\\mainserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\view\\mainserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printmk\\app.net\\model\\requestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\model\\requestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|D:\\C#.net\\printMk\\app.net\\view\\mainserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printstd\\app.net\\view\\mainserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\view\\mainserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printmk\\app.net\\configuration\\setting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\configuration\\setting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printstd\\app.net\\model\\requestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\model\\requestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|d:\\c#.net\\printstd\\app.net\\model\\detaildenom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C06FDA99-CD0D-4173-9E5A-CA62BF882A59}|App.Net\\App.Net.csproj|solutionrelative:app.net\\model\\detaildenom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,72 +42,88 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RequestModel.cs",
-              "DocumentMoniker": "D:\\C#.net\\printMk\\App.Net\\Model\\RequestModel.cs",
-              "RelativeDocumentMoniker": "App.Net\\Model\\RequestModel.cs",
-              "ToolTip": "D:\\C#.net\\printMk\\App.Net\\Model\\RequestModel.cs",
-              "RelativeToolTip": "App.Net\\Model\\RequestModel.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAIwDgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T06:45:45.86Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Receipt.cs",
-              "DocumentMoniker": "D:\\C#.net\\printMk\\App.Net\\formatReceipt\\Receipt.cs",
-              "RelativeDocumentMoniker": "App.Net\\formatReceipt\\Receipt.cs",
-              "ToolTip": "D:\\C#.net\\printMk\\App.Net\\formatReceipt\\Receipt.cs",
-              "RelativeToolTip": "App.Net\\formatReceipt\\Receipt.cs",
-              "ViewState": "AQIAAEMAAAAAAAAAAAAUwFMAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T03:26:13.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Setting.cs",
-              "DocumentMoniker": "D:\\C#.net\\printMk\\App.Net\\Configuration\\Setting.cs",
-              "RelativeDocumentMoniker": "App.Net\\Configuration\\Setting.cs",
-              "ToolTip": "D:\\C#.net\\printMk\\App.Net\\Configuration\\Setting.cs",
-              "RelativeToolTip": "App.Net\\Configuration\\Setting.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T13:38:14.018Z"
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainServer.cs",
-              "DocumentMoniker": "D:\\C#.net\\printMk\\App.Net\\View\\MainServer.cs",
-              "RelativeDocumentMoniker": "App.Net\\View\\MainServer.cs",
-              "ToolTip": "D:\\C#.net\\printMk\\App.Net\\View\\MainServer.cs",
-              "RelativeToolTip": "App.Net\\View\\MainServer.cs",
-              "ViewState": "AQIAAJAAAAAAAAAAAAA8wO4AAABpAAAA",
+              "Title": "PrintApiController.cs",
+              "DocumentMoniker": "D:\\C#.net\\printSTD\\App.Net\\Controllers\\PrintApiController.cs",
+              "RelativeDocumentMoniker": "App.Net\\Controllers\\PrintApiController.cs",
+              "ToolTip": "D:\\C#.net\\printSTD\\App.Net\\Controllers\\PrintApiController.cs",
+              "RelativeToolTip": "App.Net\\Controllers\\PrintApiController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T18:51:11.471Z",
+              "WhenOpened": "2025-10-31T11:44:26.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "MainServer.cs [Design]",
-              "DocumentMoniker": "D:\\C#.net\\printMk\\App.Net\\View\\MainServer.cs",
+              "DocumentMoniker": "D:\\C#.net\\printSTD\\App.Net\\View\\MainServer.cs",
               "RelativeDocumentMoniker": "App.Net\\View\\MainServer.cs",
-              "ToolTip": "D:\\C#.net\\printMk\\App.Net\\View\\MainServer.cs [Design]",
+              "ToolTip": "D:\\C#.net\\printSTD\\App.Net\\View\\MainServer.cs [Design]",
               "RelativeToolTip": "App.Net\\View\\MainServer.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T18:51:05.286Z"
+              "WhenOpened": "2025-10-31T11:32:12.362Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EndOfDayReportModel.cs",
+              "DocumentMoniker": "D:\\C#.net\\printSTD\\App.Net\\Model\\EndOfDayReportModel.cs",
+              "RelativeDocumentMoniker": "App.Net\\Model\\EndOfDayReportModel.cs",
+              "ToolTip": "D:\\C#.net\\printSTD\\App.Net\\Model\\EndOfDayReportModel.cs",
+              "RelativeToolTip": "App.Net\\Model\\EndOfDayReportModel.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAA6wD0AAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T11:31:05.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DetailDenom.cs",
+              "DocumentMoniker": "D:\\C#.net\\printSTD\\App.Net\\Model\\DetailDenom.cs",
+              "RelativeDocumentMoniker": "App.Net\\Model\\DetailDenom.cs",
+              "ToolTip": "D:\\C#.net\\printSTD\\App.Net\\Model\\DetailDenom.cs",
+              "RelativeToolTip": "App.Net\\Model\\DetailDenom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T10:16:38.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainServer.cs",
+              "DocumentMoniker": "D:\\C#.net\\printSTD\\App.Net\\View\\MainServer.cs",
+              "RelativeDocumentMoniker": "App.Net\\View\\MainServer.cs",
+              "ToolTip": "D:\\C#.net\\printSTD\\App.Net\\View\\MainServer.cs",
+              "RelativeToolTip": "App.Net\\View\\MainServer.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAQwF4AAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T09:46:10.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RequestModel.cs",
+              "DocumentMoniker": "D:\\C#.net\\printSTD\\App.Net\\Model\\RequestModel.cs",
+              "RelativeDocumentMoniker": "App.Net\\Model\\RequestModel.cs",
+              "ToolTip": "D:\\C#.net\\printSTD\\App.Net\\Model\\RequestModel.cs",
+              "RelativeToolTip": "App.Net\\Model\\RequestModel.cs",
+              "ViewState": "AQIAAGoBAAAAAAAAAAAiwH0BAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T18:38:43.708Z",
+              "EditorCaption": ""
             }
           ]
         }

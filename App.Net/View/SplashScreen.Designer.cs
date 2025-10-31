@@ -56,7 +56,7 @@
             label2.Name = "label2";
             label2.Size = new Size(240, 30);
             label2.TabIndex = 1;
-            label2.Text = "Printer Service API V1.00";
+            label2.Text = "Printer Service API V3.00";
             // 
             // pictureBox1
             // 

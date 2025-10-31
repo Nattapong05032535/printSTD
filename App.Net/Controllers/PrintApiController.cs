@@ -57,13 +57,58 @@ namespace App.Net.Controllers
             }
         }
 
+        //[HttpPost("report")]
+        //public async Task<IActionResult> Report([FromBody] RequestReportModel reportModel)
+        //{
+        //    try
+        //    {
+        //        string errorMessage = string.Empty;
+
+        //        if (reportModel == null || !reportModel.Validate(out errorMessage))
+        //        {
+        //            _view.Invoke((MethodInvoker)delegate
+        //            {
+        //                if (reportModel != null)
+        //                {
+        //                    _view.HandleFrontendAndPrint(reportModel, "Error: " + errorMessage);
+        //                }
+        //                else
+        //                {
+        //                    _view.HandleFrontendAndPrint(new RequestReportModel(), "Error: " + errorMessage);
+        //                }
+        //            });
+
+        //            LogErrorToFile("Validation Error", JsonSerializer.Serialize(reportModel), errorMessage);
+        //            return BadRequest(new { status = "error", message = errorMessage });
+        //        }
+
+        //        _view.Invoke((MethodInvoker)delegate
+        //        {
+        //            _view.HandleFrontendAndPrint(reportModel, "Success");
+        //        });
+
+        //        return Ok(new { status = "success", message = "Report" });
+        //    }
+        //    catch (JsonException ex)
+        //    {
+        //        LogErrorToFile("JSON Parsing Error", JsonSerializer.Serialize(reportModel), ex.Message);
+        //        return BadRequest(new { status = "error", message = "Invalid JSON format: " + ex.Message });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogError($"Unexpected Error: {ex.Message}");
+        //        return StatusCode(500, new { status = "error", message = "Unexpected error occurred." });
+        //    }
+        //}
+
         [HttpPost("report")]
-        public async Task<IActionResult> Report([FromBody] RequestReportModel reportModel)
+        public async Task<IActionResult> Report([FromBody] EndOfDayReportModel reportModel)
         {
             try
             {
                 string errorMessage = string.Empty;
 
+                // ? ตรวจสอบว่ามีข้อมูล และ validate ผ่านหรือไม่
                 if (reportModel == null || !reportModel.Validate(out errorMessage))
                 {
                     _view.Invoke((MethodInvoker)delegate
@@ -74,7 +119,7 @@ namespace App.Net.Controllers
                         }
                         else
                         {
-                            _view.HandleFrontendAndPrint(new RequestReportModel(), "Error: " + errorMessage);
+                            _view.HandleFrontendAndPrint(new EndOfDayReportModel(), "Error: " + errorMessage);
                         }
                     });
 
@@ -82,16 +127,17 @@ namespace App.Net.Controllers
                     return BadRequest(new { status = "error", message = errorMessage });
                 }
 
+                // ? หากข้อมูลถูกต้อง เรียกแสดงผลที่ Frontend และพิมพ์รายงาน
                 _view.Invoke((MethodInvoker)delegate
                 {
                     _view.HandleFrontendAndPrint(reportModel, "Success");
                 });
 
-                return Ok(new { status = "success", message = "Report" });
+                return Ok(new { status = "success", message = "End of Day Report processed successfully" });
             }
             catch (JsonException ex)
             {
-                LogErrorToFile("JSON Parsing Error", JsonSerializer.Serialize(reportModel), ex.Message);
+                LogErrorToFile("JSON Parsing Error", reportModel != null ? JsonSerializer.Serialize(reportModel) : "null", ex.Message);
                 return BadRequest(new { status = "error", message = "Invalid JSON format: " + ex.Message });
             }
             catch (Exception ex)
@@ -100,6 +146,7 @@ namespace App.Net.Controllers
                 return StatusCode(500, new { status = "error", message = "Unexpected error occurred." });
             }
         }
+
 
         private void LogError(string message)
         {

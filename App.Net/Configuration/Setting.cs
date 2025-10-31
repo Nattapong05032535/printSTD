@@ -57,5 +57,15 @@ namespace App.Net.Configuration
         public static bool exchangeSalePrint { get; set; } = true;
 
         public static bool exchangeDispPrint { get; set; } = true;
+
+        public static bool cashCollectPrint { get; set; } = true;
+
+        public static bool changeDepositPrint { get; set; } = true;
+
+        public static bool changeDispensePrint { get; set; } = true;
+
+        public static bool tipExchangePrint { get; set; } = true;
+
+        public static bool receivePrint { get; set; } = true;
     }
 }
